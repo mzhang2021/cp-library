@@ -1,8 +1,8 @@
 /**
- * Description: Solves the single source shortest path problem for graphs with positive edges.
+ * Description: Solves the single source shortest path problem for graphs with positive edges. Better for sparse graphs.
  * Source: own
  * Verification: http://codeforces.com/problemset/problem/20/C
- * Time: O(n + m log m)
+ * Time: O(m log n)
  */
 
 #define MAXN 100000

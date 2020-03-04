@@ -9,6 +9,8 @@ template<int SZ, int LOG>
 struct RMQ {
     int a[SZ], spt[SZ][LOG];
 
+    RMQ() {}
+
     RMQ(int n, int *_a) {
         for (int i=0; i<n; i++) {
             a[i] = _a[i];
@@ -26,6 +28,9 @@ struct RMQ {
 
     int query(int i, int j) {
         int k = 31 - __builtin_clz(j - i + 1);
-        return min(a[spt[i][k]], a[spt[j-(1<<k)+1][k]]);
+        if (a[spt[i][k]] < a[spt[j-(1<<k)+1][k]])
+            return spt[i][k];
+        else
+            return spt[j-(1<<k)+1][k];
     }
 };
