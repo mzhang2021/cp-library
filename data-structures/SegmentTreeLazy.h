@@ -5,13 +5,30 @@
  * Time: O(n) build, O(log n) query and update
  */
 
-template<int SZ>
 struct SegmentTree {
-    int st[4*SZ], lazy[4*SZ];
+    int n;
+    vector<int> a, st, lazy;
 
-    SegmentTree() {
-        memset(st, 0, sizeof(st));
-        memset(lazy, 0, sizeof(lazy));
+    SegmentTree(int _n) : n(_n), st(4*n), lazy(4*n) {}
+
+    SegmentTree(vector<int> &_a) {
+        a = _a;
+        n = a.size();
+        st.assign(4*n, 0);
+        lazy.assign(4*n, 0);
+        build(1, 0, n-1);
+    }
+
+    void build(int p, int l, int r) {
+        if (l == r) {
+            st[p] += a[l];
+            return;
+        }
+
+        int m = (l + r) / 2;
+        build(2*p, l, m);
+        build(2*p+1, m+1, r);
+        st[p] = st[2*p] + st[2*p+1];
     }
 
     void push(int p, int l, int r) {
@@ -37,6 +54,10 @@ struct SegmentTree {
         return query(2*p, l, m, i, j) + query(2*p+1, m+1, r, i, j);
     }
 
+    int query(int i, int j) {
+        return query(1, 0, n-1, i, j);
+    }
+
     void update(int p, int l, int r, int i, int j, int val) {
         push(p, l, r);
 
@@ -55,5 +76,9 @@ struct SegmentTree {
         update(2*p, l, m, i, j, val);
         update(2*p+1, m+1, r, i, j, val);
         st[p] = st[2*p] + st[2*p+1];
+    }
+
+    void update(int i, int j, int val) {
+        update(1, 0, n-1, i, j, val);
     }
 };

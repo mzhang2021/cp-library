@@ -9,7 +9,7 @@ template<int SZ>
 struct DSU {
     int parent[SZ], Size[SZ];
 
-    DSU(int n) {
+    void init(int n) {
         for (int i=0; i<n; i++) {
             parent[i] = i;
             Size[i] = 1;

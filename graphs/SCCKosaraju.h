@@ -10,14 +10,14 @@
 int n, sccCount;
 bool visited[MAXN];
 vector<int> adj[MAXN], adjr[MAXN];
-stack<int> s;
+stack<int> st;
 
 void dfs1(int u) {
     visited[u] = true;
     for (int v : adj[u])
         if (!visited[v])
             dfs1(v);
-    s.push(u);
+    st.push(u);
 }
 
 void dfs2(int u) {
@@ -36,9 +36,9 @@ void scc() {
             dfs1(i);
 
     memset(visited, false, sizeof(visited));
-    while (!s.empty()) {
-        int u = s.top();
-        s.pop();
+    while (!st.empty()) {
+        int u = st.top();
+        st.pop();
         if (!visited[u]) {
             dfs2(u);
             sccCount++;

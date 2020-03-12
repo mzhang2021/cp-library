@@ -10,11 +10,11 @@
 int n, id, sccCount, dfsNum[MAXN], dfsLow[MAXN];
 bool visited[MAXN];
 vector<int> adj[MAXN];
-stack<int> s;
+stack<int> st;
 
 void dfs(int u) {
     dfsNum[u] = dfsLow[u] = id++;
-    s.push(u);
+    st.push(u);
     visited[u] = true;
     for (int v : adj[u]) {
         if (dfsNum[v] == -1)
@@ -26,8 +26,8 @@ void dfs(int u) {
     if (dfsLow[u] == dfsNum[u]) {
         int v = -1;
         while (u != v) {
-            v = s.top();
-            s.pop();
+            v = st.top();
+            st.pop();
             visited[v] = false;
         }
         sccCount++;

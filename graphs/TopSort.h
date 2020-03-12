@@ -9,14 +9,14 @@
 
 bool visited[MAXN];
 vector<int> adj[MAXN];
-stack<int> s;
+stack<int> st;
 
 void dfs(int u) {
     visited[u] = true;
     for (int v : adj[u])
         if (!visited[v])
             dfs(v);
-    s.push(u);
+    st.push(u);
 }
 
 void topSort() {

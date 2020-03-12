@@ -7,38 +7,44 @@
 
 #include "SegmentTreeLazy.h"
 
-template<int SZ, bool VAL_IN_EDGES>
+template<bool VAL_IN_EDGES>
 struct HLD {
-    int n, ti, par[SZ], sz[SZ], depth[SZ], root[SZ], pos[SZ];
+    int ti;
+    vector<int> par, sz, depth, root, pos;
     vector<vector<int>> adj;
-    SegmentTree<SZ> st;
+    SegmentTree st;
 
-    HLD(vector<vector<int>> &_adj) : n(_adj.size()), tm(0), adj(_adj) {
-        root[0] = 0;
-        dfsSz(0, -1, 0);
-        dfsHld(0, -1);
+    HLD(int n) : ti(0), par(n, -1), sz(n, 1), depth(n), root(n), pos(n), adj(n), st(n) {}
+
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
 
-    void dfsSz(int u, int p, int d) {
-        par[u] = p;
-        sz[u] = 1;
-        depth[u] = d;
-        for (int &v : adj[u])
-            if (v != p) {
-                dfsSz(v, u, d+1);
-                sz[u] += sz[v];
-                if (sz[v] > sz[adj[u][0]])
-                    swap(v, adj[u][0]);
-            }
+    void init() {
+        dfsSz(0);
+        dfsHld(0);
     }
 
-    void dfsHld(int u, int p) {
+    void dfsSz(int u) {
+        if (par[u] != -1)
+            adj[u].erase(find(adj[u].begin(), adj[u].end(), par[u]));
+        for (int &v : adj[u]) {
+            par[v] = u;
+            depth[v] = depth[u] + 1;
+            dfsSz(v);
+            sz[u] += sz[v];
+            if (sz[v] > sz[adj[u][0]])
+                swap(v, adj[u][0]);
+        }
+    }
+
+    void dfsHld(int u) {
         pos[u] = ti++;
-        for (int v : adj[u])
-            if (v != p) {
-                root[v] = (v == adj[u][0] ? root[u] : v);
-                dfsHld(v, u);
-            }
+        for (int v : adj[u]) {
+            root[v] = (v == adj[u][0] ? root[u] : v);
+            dfsHld(v);
+        }
     }
 
     template<class B>
@@ -56,14 +62,14 @@ struct HLD {
     int query(int u, int v) {
         int ret = 0;
         process(u, v, [this, &ret] (int l, int r) {
-            ret += st.query(1, 0, n-1, l, r);
+            ret += st.query(l, r);
         });
         return ret;
     }
 
     void update(int u, int v, int val) {
         process(u, v, [this, &val] (int l, int r) {
-            st.update(1, 0, n-1, l, r, val);
+            st.update(l, r, val);
         });
     }
 };

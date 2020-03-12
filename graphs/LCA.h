@@ -10,12 +10,12 @@
 #define MAXN 100000
 #define LOG 18
 
-int idx, tm[MAXN], node[2*MAXN], depth[2*MAXN];
+int idx, ti[MAXN], node[2*MAXN], depth[2*MAXN];
 vector<int> adj[MAXN];
-RMQ<2*MAXN, LOG> rmq;
+RMQ rmq;
 
 void dfs(int u, int p, int d) {
-    tm[u] = idx;
+    ti[u] = idx;
     node[idx] = u;
     depth[idx++] = d;
     for (int v : adj[u])
@@ -27,17 +27,17 @@ void dfs(int u, int p, int d) {
 }
 
 int lca(int u, int v) {
-    if (tm[u] > tm[v])
+    if (ti[u] > ti[v])
         swap(u, v);
-    return node[rmq.query(tm[u], tm[v])];
+    return node[rmq.query(ti[u], ti[v])];
 }
 
 int dist(int u, int v) {
-    return depth[tm[u]] + depth[tm[v]] - 2 * depth[tm[lca(u, v)]];
+    return depth[ti[u]] + depth[ti[v]] - 2 * depth[ti[lca(u, v)]];
 }
 
 void preprocess() {
     idx = 0;
     dfs(0, -1, 0);
-    rmq = RMQ<2*MAXN, LOG>(idx, depth);
+    rmq = RMQ(idx, depth);
 }

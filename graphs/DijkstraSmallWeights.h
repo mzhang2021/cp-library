@@ -2,7 +2,7 @@
  * Description: Solves the single source shortest path problem for graphs with small positive edges. Also known as Dial's algorithm.
  * Source: https://www.geeksforgeeks.org/dials-algorithm-optimized-dijkstra-for-small-range-weights/
  * Verification: https://www.spoj.com/problems/ADATRIP/
- * Time: O(nw + m)
+ * Time: O(n * maxW + m)
  */
 
 #define MAXN 100000

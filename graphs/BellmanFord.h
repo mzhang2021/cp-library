@@ -2,7 +2,7 @@
  * Description: Solves the single source shortest path problem for graphs with negative edges.
  * Source: Competitive Programming 3
  * Verification: https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=499
- * Time: O(nm)
+ * Time: O(n * m)
  */
 
 #define MAXN 100

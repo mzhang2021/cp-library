@@ -2,7 +2,7 @@
  * Description: Solves the single source shortest path problem for graphs with positive edges. Faster variant of Bellman Ford.
  * Source: https://codeforces.com/blog/entry/16221
  * Verification: https://www.spoj.com/problems/ADATRIP/
- * Time: O(m) on average, O(nm) in worst case
+ * Time: O(m) on average, O(n * m) in worst case
  */
 
 #define MAXN 100000
