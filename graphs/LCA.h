@@ -8,7 +8,6 @@
 #include "SparseTable.h"
 
 #define MAXN 100000
-#define LOG 18
 
 int idx, ti[MAXN], node[2*MAXN], depth[2*MAXN];
 vector<int> adj[MAXN];
@@ -39,5 +38,5 @@ int dist(int u, int v) {
 void preprocess() {
     idx = 0;
     dfs(0, -1, 0);
-    rmq = RMQ(idx, depth);
+    rmq.init(idx, depth);
 }

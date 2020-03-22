@@ -7,23 +7,23 @@
 
 #define MAXN 100000
 
-int n, id, sccCount, dfsNum[MAXN], dfsLow[MAXN];
+int n, ti, sccCount, num[MAXN], low[MAXN];
 bool visited[MAXN];
 vector<int> adj[MAXN];
 stack<int> st;
 
 void dfs(int u) {
-    dfsNum[u] = dfsLow[u] = id++;
+    num[u] = low[u] = ti++;
     st.push(u);
     visited[u] = true;
     for (int v : adj[u]) {
-        if (dfsNum[v] == -1)
+        if (num[v] == -1)
             dfs(v);
         if (visited[v])
-            dfsLow[u] = min(dfsLow[u], dfsLow[v]);
+            low[u] = min(low[u], low[v]);
     }
 
-    if (dfsLow[u] == dfsNum[u]) {
+    if (low[u] == num[u]) {
         int v = -1;
         while (u != v) {
             v = st.top();
@@ -35,9 +35,9 @@ void dfs(int u) {
 }
 
 void scc() {
-    memset(dfsNum, -1, sizeof(dfsNum));
-    id = sccCount = 0;
+    memset(num, -1, sizeof(num));
+    ti = sccCount = 0;
     for (int i=0; i<n; i++)
-        if (dfsNum[i] == -1)
+        if (num[i] == -1)
             dfs(i);
 }

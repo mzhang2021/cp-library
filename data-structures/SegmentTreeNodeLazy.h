@@ -12,7 +12,7 @@ struct Node {
         ans += val;
     }
 
-    void Merge(Node a, Node b) {
+    void Merge(Node &a, Node &b) {
         ans = a.ans + b.ans;
     }
 
@@ -73,8 +73,8 @@ struct SegmentTree {
             return query(2*p, i, j);
         else if (i > m)
             return query(2*p+1, i, j);
-        Node ret;
-        ret.Merge(query(2*p, i, m), query(2*p+1, m+1, j));
+        Node ret, ls = query(2*p, i, m), rs = query(2*p+1, m+1, j);
+        ret.Merge(ls, rs);
         return ret;
     }
 

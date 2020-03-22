@@ -5,10 +5,10 @@
  * Time: O(sqrt(n) * m)
  */
 
-#define MAXN 100001
+#define MAX 100001
 
-int n, matchL[MAXN], matchR[MAXN], dist[MAXN];
-vector<int> adj[MAXN];
+int n, matchL[MAX], matchR[MAX], dist[MAX];
+vector<int> adj[MAX];
 
 bool bfs() {
     queue<int> q;
