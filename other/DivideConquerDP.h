@@ -17,7 +17,7 @@ void solve(int k, int l, int r, int optl, int optr) {
         return;
 
     int mid = (l + r) / 2;
-    pair<long long, int> best{LLONG_MAX, -1};
+    pair<long long, int> best(LLONG_MAX, -1);
     for (int i=optl; i<=min(mid, optr); i++)
         best = min(best, {dp[k-1][i] + cost(i, mid), i});
 

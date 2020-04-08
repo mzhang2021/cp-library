@@ -12,7 +12,7 @@ struct Node {
     Node(int _l, int _r) : ans(0), l(_l), r(_r), left(NULL), right(NULL) {}
 
     void extend() {
-        if (left == NULL) {
+        if (!left) {
             int m = (l + r) / 2;
             left = new Node(l, m);
             right = new Node(m+1, r);

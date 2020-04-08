@@ -13,10 +13,10 @@ struct Point {
     Point operator - (const Point &other) const {return Point(x - other.x, y - other.y);}
     Point operator * (T c) const {return Point(x * c, y * c);}
     Point operator / (T c) const {return Point(x / c, y / c);}
-    void operator += (const Point &other) {*this = *this + other;}
-    void operator -= (const Point &other) {*this = *this - other;}
-    void operator *= (T c) {*this = *this * c;}
-    void operator /= (T c) {*this = *this / c;}
+    Point& operator += (const Point &other) {return *this = *this + other;}
+    Point& operator -= (const Point &other) {return *this = *this - other;}
+    Point& operator *= (T c) {return *this = *this * c;}
+    Point& operator /= (T c) {return *this = *this / c;}
     bool operator < (const Point &other) const {return tie(x, y) < tie(other.x, other.y);}
     bool operator <= (const Point &other) const {return tie(x, y) <= tie(other.x, other.y);}
     bool operator > (const Point &other) const {return tie(x, y) > tie(other.x, other.y);}

@@ -8,25 +8,22 @@
 #define MAXN 100000
 #define LOG 17
 
-int n, depth[MAXN], parent[MAXN], dp[MAXN][LOG];
+int n, depth[MAXN], dp[MAXN][LOG];
 vector<int> adj[MAXN];
 
 void dfs(int u, int d) {
     depth[u] = d;
     for (int v : adj[u])
-        if (v != parent[u]) {
-            parent[v] = u;
+        if (v != dp[u][0]) {
+            dp[v][0] = u;
             dfs(v, d + 1);
         }
 }
 
 void preprocess() {
-    parent[0] = -1;
-    dfs(0, 0);
     memset(dp, -1, sizeof(dp));
+    dfs(0, 0);
 
-    for (int i=0; i<n; i++)
-        dp[i][0] = parent[i];
     for (int j=1; 1<<j<=n; j++)
         for (int i=0; i<n; i++)
             if (dp[i][j-1] != -1)
@@ -50,7 +47,7 @@ int lca(int u, int v) {
             v = dp[v][j];
         }
 
-    return parent[u];
+    return dp[u][0];
 }
 
 int kthAncestor(int u, int k) {
