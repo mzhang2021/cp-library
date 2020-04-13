@@ -1,7 +1,7 @@
 /**
  * Description: Finds a valid Euler tour of a graph. Prerequisite is that there are either zero or two nodes with odd degree.
  * Source: https://github.com/kth-competitive-programming/kactl/blob/master/content/graph/EulerWalk.h
- * Verification: https://jvonk.github.io/usaco/2018/12/13/fence.html
+ * Verification: https://www.spoj.com/problems/WORDS1/
  * Time: O(n + m)
  */
 

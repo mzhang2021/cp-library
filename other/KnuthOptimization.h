@@ -22,7 +22,7 @@ void knuth() {
             }
 
             pair<int, int> best(INT_MAX, -1);
-            for (int k=max(opt[i][j-1], i+1); k<=min(opt[i+1][j], j-1); k++)
+            for (int k=opt[i][j-1]; k<=opt[i+1][j]; k++)
                 best = min(best, {dp[i][k] + dp[k][j] + cost(i, j), k});
 
             dp[i][j] = best.first;

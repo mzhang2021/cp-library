@@ -35,7 +35,7 @@ int lowerBound(int x) {
     return l;
 }
 
-int rightMost(int x) {
+int upperBound(int x) {
     int l = 0, r = n;
     while (l < r) {
         int m = (l + r) / 2;
