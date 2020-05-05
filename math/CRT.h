@@ -43,8 +43,8 @@ pair<long long, long long> crt() {
         if (!solve(lcm, m[i], a[i] - ret, x, y, d))
             return {-1, -1};    // no solution
 
-        ret = normalize(ret + x % (m[i] / d) * lcm, lcm * m[i] / d);
-        lcm = lcm * m[i] / d;
+        ret = normalize(ret + x % (m[i] / d) * lcm, lcm / d * m[i]);
+        lcm = lcm / d * m[i];
     }
     return {ret, lcm};
 }
