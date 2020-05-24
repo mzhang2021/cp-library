@@ -13,7 +13,7 @@ struct Query {
 
     bool operator < (const Query &other) const {
         if (l / SZ == other.l / SZ)
-            return (r < other.r) ^ (l / SZ % 2);
+            return (l / SZ % 2 ? r > other.r : r < other.r);
         return l / SZ < other.l / SZ;
     }
 };

@@ -11,7 +11,6 @@ template<typename T>
 vector<Point<T>> convexHull(vector<Point<T>> &p) {
     sort(p.begin(), p.end());
     vector<Point<T>> h;
-    h.reserve(p.size() + 1);
     for (int rep=0; rep<2; rep++) {
         auto start = h.size();
         for (auto pt : p) {
