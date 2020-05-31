@@ -11,11 +11,7 @@ struct SegmentTree {
 
     SegmentTree(int _n) : n(_n), st(4*n), lazy(4*n) {}
 
-    SegmentTree(vector<int> &_a) {
-        a = _a;
-        n = a.size();
-        st.assign(4*n, 0);
-        lazy.assign(4*n, 0);
+    SegmentTree(const vector<int> &_a) : n(_a.size()), a(_a), st(4*n), lazy(4*n) {
         build(1, 0, n-1);
     }
 

@@ -31,10 +31,7 @@ struct SegmentTree {
     vector<int> a;
     vector<Node> st;
 
-    SegmentTree(const vector<int> &_a) {
-        a = _a;
-        n = a.size();
-        st.resize(4*n);
+    SegmentTree(const vector<int> &_a) : n(_a.size()), a(_a), st(4*n) {
         build(1, 0, n-1);
     }
 
