@@ -9,7 +9,7 @@
 
 int p[2*MAXN+3];
 
-int manacher(string s) {
+int manacher(const string &s) {
     memset(p, 0, sizeof(p));
     string t = "$";
     for (char c : s)
