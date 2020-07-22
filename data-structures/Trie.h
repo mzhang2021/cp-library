@@ -10,11 +10,11 @@
 
 int id = 1, trie[MAX][ALPHA], cnt[MAX];
 
-void add(string s) {
+void add(const string &s) {
     int u = 0;
     cnt[u]++;
     for (char c : s) {
-        if (trie[u][c-'a'] == -1)
+        if (!trie[u][c-'a'])
             u = trie[u][c-'a'] = id++;
         else
             u = trie[u][c-'a'];
@@ -22,10 +22,10 @@ void add(string s) {
     }
 }
 
-int query(string s) {
+int query(const string &s) {
     int u = 0;
     for (char c : s) {
-        if (trie[u][c-'a'] == -1)
+        if (!trie[u][c-'a'])
             return 0;
         u = trie[u][c-'a'];
     }
