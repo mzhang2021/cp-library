@@ -19,7 +19,7 @@ void sieve() {
     for (int p=3; p<MAX; p+=2)
         if (prime[p]) {
             primeList.push_back(p);
-            for (int i=p*p; i<MAX; i+=2*p)
-                prime[i] = 0;
+            for (int i=p; i<=(MAX-1)/p; i+=2)
+                prime[i*p] = 0;
         }
 }

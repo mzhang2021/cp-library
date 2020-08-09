@@ -7,29 +7,29 @@
 
 template<int SZ>
 struct DSU {
-    int parent[SZ], Size[SZ];
+    int par[SZ], sz[SZ];
 
     void init(int n) {
         for (int i=0; i<n; i++) {
-            parent[i] = i;
-            Size[i] = 1;
+            par[i] = i;
+            sz[i] = 1;
         }
     }
 
     int Find(int u) {
-        if (u != parent[u])
-            parent[u] = Find(parent[u]);
-        return parent[u];
+        if (u != par[u])
+            par[u] = Find(par[u]);
+        return par[u];
     }
 
     void Union(int u, int v) {
         u = Find(u);
         v = Find(v);
         if (u != v) {
-            if (Size[u] < Size[v])
+            if (sz[u] < sz[v])
                 swap(u, v);
-            parent[v] = u;
-            Size[u] += Size[v];
+            par[v] = u;
+            sz[u] += sz[v];
         }
     }
 };
