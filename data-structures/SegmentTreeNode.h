@@ -12,7 +12,7 @@ struct Node {
         ans += val;
     }
 
-    void Merge(Node &a, Node &b) {
+    void pull(Node &a, Node &b) {
         ans = min(a.ans, b.ans);
     }
 };
@@ -35,7 +35,7 @@ struct SegmentTree {
         int m = (l + r) / 2;
         build(2*p, l, m);
         build(2*p+1, m+1, r);
-        st[p].Merge(st[2*p], st[2*p+1]);
+        st[p].pull(st[2*p], st[2*p+1]);
     }
 
     Node query(int p, int l, int r, int i, int j) {
@@ -48,7 +48,7 @@ struct SegmentTree {
         else if (i > m)
             return query(2*p+1, m+1, r, i, j);
         Node ret, ls = query(2*p, l, m, i, m), rs = query(2*p+1, m+1, r, m+1, j);
-        ret.Merge(ls, rs);
+        ret.pull(ls, rs);
         return ret;
     }
 
@@ -67,7 +67,7 @@ struct SegmentTree {
             update(2*p, l, m, idx, val);
         else
             update(2*p+1, m+1, r, idx, val);
-        st[p].Merge(st[2*p], st[2*p+1]);
+        st[p].pull(st[2*p], st[2*p+1]);
     }
 
     void update(int idx, int val) {

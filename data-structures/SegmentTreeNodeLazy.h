@@ -1,6 +1,6 @@
 /**
  * Description: Performs range queries and range updates. Stores tree nodes as structs.
- * Source: own
+ * Source: self
  * Verification: https://www.codechef.com/problems/FLIPCOIN
  * Time: O(n) build, O(log n) query and update
  */
@@ -12,7 +12,7 @@ struct Node {
         ans += val;
     }
 
-    void Merge(Node &a, Node &b) {
+    void pull(Node &a, Node &b) {
         ans = a.ans + b.ans;
     }
 
@@ -46,7 +46,7 @@ struct SegmentTree {
         int m = (l + r) / 2;
         build(2*p, l, m);
         build(2*p+1, m+1, r);
-        st[p].Merge(st[2*p], st[2*p+1]);
+        st[p].pull(st[2*p], st[2*p+1]);
     }
 
     void push(int p) {
@@ -71,7 +71,7 @@ struct SegmentTree {
         else if (i > m)
             return query(2*p+1, i, j);
         Node ret, ls = query(2*p, i, m), rs = query(2*p+1, m+1, j);
-        ret.Merge(ls, rs);
+        ret.pull(ls, rs);
         return ret;
     }
 
@@ -99,7 +99,7 @@ struct SegmentTree {
             update(2*p, i, m, val);
             update(2*p+1, m+1, j, val);
         }
-        st[p].Merge(st[2*p], st[2*p+1]);
+        st[p].pull(st[2*p], st[2*p+1]);
     }
 
     void update(int i, int j, int val) {

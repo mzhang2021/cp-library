@@ -8,59 +8,49 @@
 #include "SegmentTreeDynamic.h"
 
 struct Seg {
-    int n, l, r;
-    Node yNode;
-    Seg *left, *right;
+    Node *node;
+    Seg *l, *r;
 
-    Seg(int _n, int _l, int _r) : n(_n), l(_l), r(_r), yNode(0, n-1), left(NULL), right(NULL) {}
-
-    void extend() {
-        if (!left) {
-            int m = (l + r) / 2;
-            left = new Seg(n, l, m);
-            right = new Seg(n, m+1, r);
-        }
-    }
-
-    int query(int ix, int iy, int jx, int jy) {
-        if (ix > r || jx < l)
-            return 0;
-        if (ix <= l && r <= jx)
-            return yNode.query(iy, jy);
-
-        extend();
-        return left->query(ix, iy, jx, jy) + right->query(ix, iy, jx, jy);
-    }
-
-    void update(int x, int y, int val) {
-        if (l == r) {
-            yNode.update(y, val);
-            return;
-        }
-
-        extend();
-        int m = (l + r) / 2;
-        if (x <= m)
-            left->update(x, y, val);
-        else
-            right->update(x, y, val);
-        update_y(&yNode, &left->yNode, &right->yNode, y, val);
-    }
-
-    void update_y(Node *cur, Node *curL, Node *curR, int y, long long val) {
-        if (cur->l == cur->r) {
-            cur->ans = curL->ans + curR->ans;
-            return;
-        }
-
-        cur->extend();
-        curL->extend();
-        curR->extend();
-        int m = (cur->l + cur->r) / 2;
-        if (y <= m)
-            update_y(cur->left, curL->left, curR->left, y, val);
-        else
-            update_y(cur->right, curL->right, curR->right, y, val);
-        cur->ans = cur->left->ans + cur->right->ans;
-    }
+    Seg() : node(new Node()), l(NULL), r(NULL) {}
 };
+
+int n;
+
+int query(Seg *p, int l, int r, int ix, int iy, int jx, int jy) {
+    if (ix > r || jx < l || !p)
+        return 0;
+    if (ix <= l && r <= jx)
+        return query(p->node, 0, n-1, iy, jy);
+    int m = (l + r) / 2;
+    return query(p->l, l, m, ix, iy, jx, jy) + query(p->r, m+1, r, ix, iy, jx, jy);
+}
+
+void update_y(Node *p, Node *pl, Node *pr, int l, int r, int y, int val) {
+    if (l != r) {
+        int m = (l + r) / 2;
+        if (y <= m) {
+            if (!p->l) p->l = new Node();
+            update_y(p->l, pl ? pl->l : NULL, pr ? pr->l : NULL, l, m, y, val);
+        } else {
+            if (!p->r) p->r = new Node();
+            update_y(p->r, pl ? pl->r : NULL, pr ? pr->r : NULL, m+1, r, y, val);
+        }
+    }
+    p->ans = (pl ? pl->ans : 0) + (pr ? pr->ans : 0);
+}
+
+void update(Seg *p, int l, int r, int x, int y, int val) {
+    if (l == r) {
+        update(p->node, 0, n-1, y, val);
+        return;
+    }
+    int m = (l + r) / 2;
+    if (x <= m) {
+        if (!p->l) p->l = new Seg();
+        update(p->l, l, m, x, y, val);
+    } else {
+        if (!p->r) p->r = new Seg();
+        update(p->r, m+1, r, x, y, val);
+    }
+    update_y(p->node, p->l ? p->l->node : NULL, p->r ? p->r->node : NULL, 0, n-1, y, val);
+}

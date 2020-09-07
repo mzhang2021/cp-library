@@ -16,15 +16,15 @@ struct DSU {
         }
     }
 
-    int Find(int u) {
+    int findRoot(int u) {
         if (u != par[u])
-            par[u] = Find(par[u]);
+            par[u] = findRoot(par[u]);
         return par[u];
     }
 
-    void Union(int u, int v) {
-        u = Find(u);
-        v = Find(v);
+    void unite(int u, int v) {
+        u = findRoot(u);
+        v = findRoot(v);
         if (u != v) {
             if (sz[u] < sz[v])
                 swap(u, v);
