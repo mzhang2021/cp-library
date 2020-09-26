@@ -1,5 +1,6 @@
 /**
  * Description: Finds all occurrences of a pattern string in a text string.
+ * Prefix function computes longest proper prefix that matches suffix for each prefix.
  * Source: https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
  * Verification: https://codeforces.com/contest/126/problem/B
  * Time: O(n + m)

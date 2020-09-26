@@ -22,14 +22,15 @@ struct DSU {
         return par[u];
     }
 
-    void unite(int u, int v) {
+    bool unite(int u, int v) {
         u = findRoot(u);
         v = findRoot(v);
-        if (u != v) {
-            if (sz[u] < sz[v])
-                swap(u, v);
-            par[v] = u;
-            sz[u] += sz[v];
-        }
+        if (u == v)
+            return false;
+        if (sz[u] < sz[v])
+            swap(u, v);
+        par[v] = u;
+        sz[u] += sz[v];
+        return true;
     }
 };

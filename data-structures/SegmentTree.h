@@ -9,7 +9,8 @@ template<int SZ>
 struct SegmentTree {
     int n, st[2*SZ];
 
-    SegmentTree() {
+    void init(int _n) {
+        n = _n;
         memset(st, 0, sizeof(st));
     }
 
