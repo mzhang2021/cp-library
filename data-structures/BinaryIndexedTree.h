@@ -5,18 +5,18 @@
  * Time: O(log n) query and update
  */
 
-#define MAXN 100000
+const int MAXN = 1e5 + 5;
 
-int n, bit[MAXN+1];
+int n, bit[MAXN];
 
-int query(int x) {
+int query(int i) {
     int ret = 0;
-    for (int i=x; i>0; i-=i&-i)
+    for (; i>0; i-=i&-i)
         ret += bit[i];
     return ret;
 }
 
-void update(int x, int val) {
-    for (int i=x; i<=n; i+=i&-i)
+void update(int i, int val) {
+    for (; i<=n; i+=i&-i)
         bit[i] += val;
 }
