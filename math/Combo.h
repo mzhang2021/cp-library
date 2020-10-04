@@ -20,7 +20,7 @@ long long inverse(long long a) {
 }
 
 long long choose(int n, int k) {
-    if (n < k) return 0;
+    if (k < 0 || n < k) return 0;
     return fact[n] * inv[k] % MOD * inv[n-k] % MOD;
 }
 

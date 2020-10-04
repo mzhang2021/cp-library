@@ -1,5 +1,5 @@
 /**
- * Description: Offline algorithm for answering subarray queries. Supports updates to array.
+ * Description: Offline algorithm for answering subarray queries. Supports updates to array. Optimal block size is cuberoot(2 * n^2).
  * Source: https://github.com/gkcs/Competitive-Programming/blob/master/src/main/java/main/java/videos/MosUpdate.java
  * Verification: https://www.spoj.com/problems/XXXXXXXX/
  * Time: O(n^(2/3) * q)

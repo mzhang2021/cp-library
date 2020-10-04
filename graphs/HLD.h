@@ -59,6 +59,7 @@ struct HLD {
         op(pos[u] + VAL_IN_EDGES, pos[v]);
     }
 
+    // path
     int query(int u, int v) {
         int ret = 0;
         process(u, v, [this, &ret] (int l, int r) {
@@ -71,5 +72,14 @@ struct HLD {
         process(u, v, [this, &val] (int l, int r) {
             st.update(l, r, val);
         });
+    }
+
+    // subtree
+    int query(int u) {
+        return st.query(pos[u] + VAL_IN_EDGES, pos[u] + sz[u] - 1);
+    }
+
+    void update(int u, int val) {
+        st.update(pos[u] + VAL_IN_EDGES, pos[u] + sz[u] - 1, val);
     }
 };

@@ -15,9 +15,8 @@ void add(const string &s) {
     cnt[u]++;
     for (char c : s) {
         if (!trie[u][c-'a'])
-            u = trie[u][c-'a'] = id++;
-        else
-            u = trie[u][c-'a'];
+            trie[u][c-'a'] = id++;
+        u = trie[u][c-'a'];
         cnt[u]++;
     }
 }

@@ -1,8 +1,8 @@
 /**
- * Description: Offline algorithm for answering subarray queries.
+ * Description: Offline algorithm for answering subarray queries. Optimal block size is n / sqrt(q).
  * Source: https://www.hackerearth.com/practice/notes/mos-algorithm/
  * Verification: https://codeforces.com/contest/220/problem/B
- * Time: O((n + q) sqrt(n))
+ * Time: O((n + q) sqrt(n)) or O(n sqrt(q))
  */
 
 #define MAX 100000

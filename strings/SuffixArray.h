@@ -11,7 +11,7 @@ struct SuffixArray {
     string s;
     vector<int> p, lcp;
 
-    SuffixArray(string _s) : n(_s.length() + 1), s(_s), p(n), lcp(n-1) {
+    SuffixArray(const string &_s) : n(_s.length() + 1), s(_s), p(n), lcp(n-1) {
         s += '$';
         buildSA();
         buildLCP();
