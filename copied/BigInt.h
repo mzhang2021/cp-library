@@ -1,9 +1,4 @@
-/**
- * Description: BigInteger class for C++.
- * Source: https://codeforces.com/blog/entry/22566
- * Verification: https://www.spoj.com/problems/MUL/
- * Time: fast
- */
+// Source: https://codeforces.com/blog/entry/22566
 
 /*
   ######################################################################

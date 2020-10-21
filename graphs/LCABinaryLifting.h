@@ -5,29 +5,29 @@
  * Time: O(n log n) preprocessing, O(log n) query
  */
 
-#define MAXN 100000
-#define LOG 17
+const int MAXN = 1e5 + 5;
+const int LOG = 17;
 
-int n, depth[MAXN], dp[MAXN][LOG];
+int n, depth[MAXN], up[MAXN][LOG];
 vector<int> adj[MAXN];
 
-void dfs(int u, int d) {
-    depth[u] = d;
+void dfs(int u) {
     for (int v : adj[u])
-        if (v != dp[u][0]) {
-            dp[v][0] = u;
-            dfs(v, d + 1);
+        if (v != up[u][0]) {
+            up[v][0] = u;
+            depth[v] = depth[u] + 1;
+            dfs(v);
         }
 }
 
 void preprocess() {
-    memset(dp, -1, sizeof(dp));
-    dfs(0, 0);
+    memset(up, -1, sizeof(up));
+    dfs(0);
 
     for (int j=1; 1<<j<=n; j++)
         for (int i=0; i<n; i++)
-            if (dp[i][j-1] != -1)
-                dp[i][j] = dp[dp[i][j-1]][j-1];
+            if (up[i][j-1] != -1)
+                up[i][j] = up[up[i][j-1]][j-1];
 }
 
 int lca(int u, int v) {
@@ -36,24 +36,24 @@ int lca(int u, int v) {
 
     for (int j=LOG-1; j>=0; j--)
         if (depth[u] - (1 << j) >= depth[v])
-            u = dp[u][j];
+            u = up[u][j];
 
     if (u == v)
         return u;
 
     for (int j=LOG-1; j>=0; j--)
-        if (dp[u][j] != dp[v][j]) {
-            u = dp[u][j];
-            v = dp[v][j];
+        if (up[u][j] != up[v][j]) {
+            u = up[u][j];
+            v = up[v][j];
         }
 
-    return dp[u][0];
+    return up[u][0];
 }
 
 int kthAncestor(int u, int k) {
     for (int j=LOG-1; j>=0; j--)
-        if (dp[u][j] != -1 && 1 << j <= k) {
-            u = dp[u][j];
+        if (up[u][j] != -1 && 1 << j <= k) {
+            u = up[u][j];
             k -= 1 << j;
         }
 
