@@ -47,29 +47,29 @@ void split(pNode t, int key, pNode &l, pNode &r) {
         split(t->r, key, t->r, r), l = t;
 }
 
-void Merge(pNode &t, pNode l, pNode r) {
+void merge(pNode &t, pNode l, pNode r) {
     if (!l || !r)
         t = l ? l : r;
     else if (l->priority > r->priority)
-        Merge(l->r, l->r, r), t = l;
+        merge(l->r, l->r, r), t = l;
     else
-        Merge(r->l, l, r->l), t = r;
+        merge(r->l, l, r->l), t = r;
 }
 
-void Insert(pNode &t, pNode it) {
+void insert(pNode &t, pNode it) {
     if (!t)
         t = it;
     else if (it->priority > t->priority)
         split(t, it->key, it->l, it->r), t = it;
     else
-        Insert(it->key < t->key ? t->l : t->r, it);
+        insert(it->key < t->key ? t->l : t->r, it);
 }
 
-void Erase(pNode &t, int key) {
+void erase(pNode &t, int key) {
     if (!t)
         return;
     else if (t->key == key)
-        Merge(t, t->l, t->r);
+        merge(t, t->l, t->r);
     else
-        Erase(key < t->key ? t->l : t->r, key);
+        erase(key < t->key ? t->l : t->r, key);
 }

@@ -31,7 +31,7 @@ void push(pNode t) {
     }
 }
 
-void calc(pNode t) {
+void pull(pNode t) {
     if (t) {
         push(t->l);
         push(t->r);
@@ -51,19 +51,19 @@ void split(pNode t, pNode &l, pNode &r, int pos, int add = 0) {
         split(t->l, l, t->l, pos, add), r = t;
     else
         split(t->r, t->r, r, pos, curPos + 1), l = t;
-    calc(t);
+    pull(t);
 }
 
-void Merge(pNode &t, pNode l, pNode r) {
+void merge(pNode &t, pNode l, pNode r) {
     push(l);
     push(r);
     if (!l || !r)
         t = l ? l : r;
     else if (l->priority > r->priority)
-        Merge(l->r, l->r, r), t = l;
+        merge(l->r, l->r, r), t = l;
     else
-        Merge(r->l, l, r->l), t = r;
-    calc(t);
+        merge(r->l, l, r->l), t = r;
+    pull(t);
 }
 
 int query(pNode t, int l, int r) {
@@ -71,8 +71,8 @@ int query(pNode t, int l, int r) {
     split(t, pl, pm, l-1);
     split(pm, t, pr, r-l);
     int ret = t->ans;
-    Merge(pm, pl, t);
-    Merge(t, pm, pr);
+    merge(pm, pl, t);
+    merge(t, pm, pr);
     return ret;
 }
 
@@ -81,6 +81,6 @@ void update(pNode t, int l, int r, int val) {
     split(t, pl, pm, l-1);
     split(pm, t, pr, r-l);
     t->lazy += val;
-    Merge(pm, pl, t);
-    Merge(t, pm, pr);
+    merge(pm, pl, t);
+    merge(t, pm, pr);
 }
