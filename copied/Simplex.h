@@ -1,4 +1,4 @@
-// Source: https://codeforces.com/blog/entry/59547?#comment-432183
+// Source: http://web.mit.edu/~ecprice/acm/acm08/notebook.html#file11
 
 /*
  * This is a simplex solver. Given m x n matrix A, m-vector b, n-vector c,
@@ -17,6 +17,7 @@ typedef long double DOUBLE;
 typedef vector<DOUBLE> VD;
 typedef vector<VD> VVD;
 typedef vector<int> VI;
+
 const DOUBLE EPS = 1e-9;
 
 struct LPSolver {
