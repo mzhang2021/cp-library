@@ -5,7 +5,7 @@
  * Time: O(n) build, O(log n) query and update
  */
 
-#define MAX 14000000
+const int MAX = 2e7 + 5;
 
 int id = 1, pl[MAX], pr[MAX], st[MAX];
 

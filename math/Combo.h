@@ -25,9 +25,10 @@ long long choose(int n, int k) {
 }
 
 void preprocess() {
-    fact[0] = inv[0] = 1;
-    for (int i=1; i<MAX; i++) {
+    fact[0] = 1;
+    for (int i=1; i<MAX; i++)
         fact[i] = fact[i-1] * i % MOD;
-        inv[i] = inverse(fact[i]);
-    }
+    inv[MAX-1] = inverse(fact[MAX-1]);
+    for (int i=MAX-2; i>=0; i--)
+        inv[i] = inv[i+1] * (i + 1) % MOD;
 }
