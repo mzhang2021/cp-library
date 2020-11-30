@@ -1,5 +1,6 @@
 /**
- * Description: Solves a linear diophantine equation via the extended Euclidean algorithm. Once a solution (x0, y0) is found, x = x0 + k * b / gcd, y = y0 - k * a / gcd.
+ * Description: Solves a linear diophantine equation (ax + by = c) via the extended Euclidean algorithm.
+ * Once a solution (x0, y0) is found, x = x0 + k * b / gcd, y = y0 - k * a / gcd.
  * Source: https://cp-algorithms.com/algebra/linear-diophantine-equation.html
  * Verification: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1031
  * Time: O(log n)
