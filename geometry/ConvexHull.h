@@ -13,7 +13,7 @@ vector<Point<T>> convexHull(vector<Point<T>> &p) {
     vector<Point<T>> h;
     for (int rep=0; rep<2; rep++) {
         auto start = h.size();
-        for (auto pt : p) {
+        for (auto &pt : p) {
             while (h.size() >= start + 2 && ccw(h[h.size()-2], h.back(), pt) <= 0)
                 h.pop_back();
             h.push_back(pt);

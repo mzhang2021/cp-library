@@ -5,30 +5,24 @@
  * Time: O(n) preprocessing
  */
 
+#include "Modular.h"
+
+typedef ModInt<998244353> M;
+
 const int MAX = 1e5 + 5;
-const int MOD = 998244353;
 
-long long fact[MAX], inv[MAX];
+M fact[MAX], inv[MAX];
 
-long long inverse(long long a) {
-    long long ret = 1;
-    for (int b=MOD-2; b>0; b/=2) {
-        if (b % 2) ret = ret * a % MOD;
-        a = a * a % MOD;
-    }
-    return ret;
-}
-
-long long choose(int n, int k) {
+M choose(int n, int k) {
     if (k < 0 || n < k) return 0;
-    return fact[n] * inv[k] % MOD * inv[n-k] % MOD;
+    return fact[n] * inv[k] * inv[n-k];
 }
 
 void preprocess() {
     fact[0] = 1;
     for (int i=1; i<MAX; i++)
-        fact[i] = fact[i-1] * i % MOD;
+        fact[i] = fact[i-1] * i;
     inv[MAX-1] = inverse(fact[MAX-1]);
     for (int i=MAX-2; i>=0; i--)
-        inv[i] = inv[i+1] * (i + 1) % MOD;
+        inv[i] = inv[i+1] * (i + 1);
 }
