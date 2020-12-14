@@ -16,15 +16,19 @@ struct DSU {
         }
     }
 
-    int findRoot(int u) {
+    int find(int u) {
         if (u != par[u])
-            par[u] = findRoot(par[u]);
+            par[u] = find(par[u]);
         return par[u];
     }
 
+    bool same(int u, int v) {
+        return find(u) == find(v);
+    }
+
     bool unite(int u, int v) {
-        u = findRoot(u);
-        v = findRoot(v);
+        u = find(u);
+        v = find(v);
         if (u == v)
             return false;
         if (sz[u] < sz[v])

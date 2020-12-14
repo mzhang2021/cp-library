@@ -5,8 +5,8 @@
  * Time: O(n^(2/3) * q)
  */
 
-#define MAX 10000
-#define SZ 580
+const int MAX = 1e4 + 5;
+const int SZ = 580;
 
 struct Query {
     int l, r, t, idx;
@@ -68,12 +68,12 @@ void mo() {
             if (moLeft <= updates[moTime].idx && updates[moTime].idx <= moRight)
                 add(updates[moTime].idx);
         }
-        while (moLeft < queries[i].l)
-            rem(moLeft++);
         while (moLeft > queries[i].l)
             add(--moLeft);
         while (moRight < queries[i].r)
             add(++moRight);
+        while (moLeft < queries[i].l)
+            rem(moLeft++);
         while (moRight > queries[i].r)
             rem(moRight--);
         ret[queries[i].idx] = ans;

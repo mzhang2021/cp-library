@@ -18,13 +18,17 @@ struct DSU {
         stk.clear();
     }
 
-    int findRoot(int u) {
-        return u == par[u] ? u : findRoot(par[u]);
+    int find(int u) {
+        return u == par[u] ? u : find(par[u]);
+    }
+
+    bool same(int u, int v) {
+        return find(u) == find(v);
     }
 
     bool unite(int u, int v) {
-        u = findRoot(u);
-        v = findRoot(v);
+        u = find(u);
+        v = find(v);
         if (u == v)
             return false;
         if (sz[u] < sz[v])

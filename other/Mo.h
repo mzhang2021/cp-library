@@ -5,8 +5,8 @@
  * Time: O((n + q) sqrt(n)) or O(n sqrt(q))
  */
 
-#define MAX 100000
-#define SZ 300
+const int MAX = 1e5 + 5;
+const int SZ = 300;
 
 struct Query {
     int l, r, idx;
@@ -35,12 +35,12 @@ void mo() {
     sort(queries, queries + q);
     int moLeft = 0, moRight = -1;
     for (int i=0; i<q; i++) {
-        while (moLeft < queries[i].l)
-            rem(moLeft++);
         while (moLeft > queries[i].l)
             add(--moLeft);
         while (moRight < queries[i].r)
             add(++moRight);
+        while (moLeft < queries[i].l)
+            rem(moLeft++);
         while (moRight > queries[i].r)
             rem(moRight--);
         ret[queries[i].idx] = ans;

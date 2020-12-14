@@ -18,18 +18,22 @@ struct DSU {
         }
     }
 
-    int findRoot(int u) {
+    int find(int u) {
         if (u != par[u]) {
             int v = par[u];
-            par[u] = findRoot(v);
+            par[u] = find(v);
             color[u] ^= color[v];
         }
         return par[u];
     }
 
+    bool same(int u, int v) {
+        return find(u) == find(v);
+    }
+
     bool unite(int u, int v) {
-        findRoot(u);
-        findRoot(v);
+        find(u);
+        find(v);
         bool x = color[u], y = color[v];
         u = par[u];
         v = par[v];

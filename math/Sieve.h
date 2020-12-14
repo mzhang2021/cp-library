@@ -5,7 +5,7 @@
  * Time: O(n log log n)
  */
 
-#define MAX 10000
+const int MAX = 10000;
 
 bitset<MAX> prime;
 vector<int> primeList;
