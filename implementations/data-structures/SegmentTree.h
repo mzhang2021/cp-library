@@ -5,16 +5,17 @@
  * Time: O(n) build, O(log n) query and update
  */
 
-template<int SZ>
+template<typename T, int SZ>
 struct SegmentTree {
-    int n, st[2*SZ];
+    int n;
+    T st[2*SZ];
 
     void init(int _n) {
         n = _n;
-        memset(st, 0, sizeof(int) * 2 * n);
+        memset(st, 0, sizeof(T) * 2 * n);
     }
 
-    void build(int _n, int *a) {
+    void build(int _n, T *a) {
         n = _n;
         for (int i=0; i<n; i++)
             st[i+n] = a[i];
@@ -22,8 +23,8 @@ struct SegmentTree {
             st[i] = st[i<<1] + st[i<<1|1];
     }
 
-    int query(int l, int r) {
-        int ret = 0;
+    T query(int l, int r) {
+        T ret = 0;
         for (l+=n, r+=n; l<r; l>>=1, r>>=1) {
             if (l&1) ret += st[l++];
             if (r&1) ret += st[--r];
@@ -31,7 +32,7 @@ struct SegmentTree {
         return ret;
     }
 
-    void update(int p, int val) {
+    void update(int p, T val) {
         for (st[p+=n]=val; p>1; p>>=1)
             st[p>>1] = st[p] + st[p^1];
     }
