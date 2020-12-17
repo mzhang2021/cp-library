@@ -4,9 +4,9 @@ set i=1
 :loop
 gen %i% > test.in
 echo %i%
-a < test.in > out1.out
-b < test.in > out2.out
-fc /b out1.out out2.out > nul
+a < test.in > a.out
+b < test.in > b.out
+fc /b a.out b.out > nul
 if errorlevel 1 (
 goto :eof
 )
