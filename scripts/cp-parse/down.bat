@@ -1,0 +1,2 @@
+cls
+down.py %*

@@ -1,0 +1,9 @@
+scripts/*.cpp
+scripts/*.exe
+scripts/*.in
+scripts/*.out
+scripts/bash/*.py
+scripts/bash/*.java
+scripts/bash/*.class
+scripts/bash/*.h
+testcases/

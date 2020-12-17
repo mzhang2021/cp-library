@@ -38,7 +38,7 @@ void fft(vector<cd> &a, bool inv) {
             x /= n;
 }
 
-vector<int> mul(const vector<int> &a, const vector<int> &b) {
+vector<long long> mul(const vector<long long> &a, const vector<long long> &b) {
     vector<cd> fa(a.begin(), a.end()), fb(b.begin(), b.end());
     int n = 1;
     while (n < (int) a.size() + (int) b.size())
@@ -52,8 +52,8 @@ vector<int> mul(const vector<int> &a, const vector<int> &b) {
         fa[i] *= fb[i];
     fft(fa, true);
 
-    vector<int> ret(n);
+    vector<long long> ret(n);
     for (int i=0; i<n; i++)
-        ret[i] = round(fa[i].real());
+        ret[i] = llround(fa[i].real());
     return ret;
 }

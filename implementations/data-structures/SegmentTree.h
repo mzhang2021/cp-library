@@ -11,7 +11,7 @@ struct SegmentTree {
 
     void init(int _n) {
         n = _n;
-        memset(st, 0, sizeof(st));
+        memset(st, 0, sizeof(int) * 2 * n);
     }
 
     void build(int _n, int *a) {
