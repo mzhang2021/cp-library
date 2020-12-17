@@ -3,14 +3,14 @@
 """Download and setup problems from Competitive Companion
 
 Usage:
-  down.py (-c | --clear)
-  down.py prob [<name>] [-c | --clear]
-  down.py contest [<name>... | -n <number>] [-c | --clear]
-  down.py samples [-c | --clear]
-  down.py echo [-c | --clear]
+  down.py prob [<name>] [--clear=<bool>]
+  down.py contest [<name>... | -n <number>] [--clear=<bool>]
+  down.py samples [--clear=<bool>]
+  down.py echo [--clear=<bool>]
 
 Options:
-  -h --help     Show this screen.
+  -h --help         Show this screen.
+  --clear=<bool>    Will program clear the testcases folder. [default: 1]
 
 Contest flags:
   -n COUNT, --number COUNT   Number of problems.
@@ -28,7 +28,7 @@ import re
 import os
 from shutil import rmtree
 
-TEMPLATE_DIR = 'C:/Users/Max/cp-implementations/temp.cpp'
+TEMPLATE_DIR = 'C:/Users/Max/cp-library/implementations/temp.cpp'
 
 # Returns unmarshalled or None
 def listen_once(*, timeout=None):
@@ -134,7 +134,7 @@ def make_prob(data, name, single=False):
 def main():
     arguments = docopt(__doc__)
 
-    if arguments['-c'] or arguments['--clear']:
+    if arguments['--clear'] == '1':
         try:
             rmtree(Path(sys.path[0]) / 'testcases')
         except:
