@@ -63,7 +63,7 @@ def listen_many(*, num_items=None, timeout=None):
 NAME_PATTERN = re.compile(r'^[A-Z][0-9]*\b')
 
 def get_prob_name(data, single):
-    if 'USACO' in data['group']:
+    if 'USACO' in data['group'] and 'fileName' in data['input']:
         names = [data['input']['fileName'].rstrip('.in'), data['output']['fileName'].rstrip('.out')]
         if len(set(names)) == 1:
             return names[0]
