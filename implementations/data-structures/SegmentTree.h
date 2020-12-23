@@ -5,18 +5,15 @@
  * Time: O(n) build, O(log n) query and update
  */
 
-template<typename T, int SZ>
+template<typename T>
 struct SegmentTree {
     int n;
-    T st[2*SZ];
+    vector<T> st;
 
-    void init(int _n) {
-        n = _n;
-        memset(st, 0, sizeof(T) * 2 * n);
-    }
+    SegmentTree(int _n) : n(_n), st(2 * n) {}
 
-    void build(int _n, T *a) {
-        n = _n;
+    SegmentTree(const vector<T> &a) {
+        n = a.size();
         for (int i=0; i<n; i++)
             st[i+n] = a[i];
         for (int i=n-1; i>0; i--)
