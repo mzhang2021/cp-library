@@ -5,18 +5,26 @@
  * Time: O(log n) query and update
  */
 
-const int MAXN = 1e5 + 5;
+template<typename T>
+struct BIT {
+    int n;
+    vector<T> bit;
 
-int n, bit[MAXN];
+    BIT(int _n) : n(_n), bit(n + 1) {}
 
-int query(int i) {
-    int ret = 0;
-    for (; i>0; i-=i&-i)
-        ret += bit[i];
-    return ret;
-}
+    T query(int i) {
+        T ret = 0;
+        for (; i>0; i-=i&-i)
+            ret += bit[i];
+        return ret;
+    }
 
-void update(int i, int val) {
-    for (; i<=n; i+=i&-i)
-        bit[i] += val;
-}
+    T query(int l, int r) {
+        return query(r) - query(l-1);
+    }
+
+    void update(int i, T val) {
+        for (; i<=n; i+=i&-i)
+            bit[i] += val;
+    }
+};
