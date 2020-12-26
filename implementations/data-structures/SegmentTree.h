@@ -14,6 +14,7 @@ struct SegmentTree {
 
     SegmentTree(const vector<T> &a) {
         n = a.size();
+        st.resize(2 * n);
         for (int i=0; i<n; i++)
             st[i+n] = a[i];
         for (int i=n-1; i>0; i--)
