@@ -1,7 +1,8 @@
 /**
  * Description: Hack for unprotected unordered_map. Assumes input is array of N integers in range [1, MAX].
  * Submit generator to different compiler version depending on solution being hacked.
- * Source: https://ipsc.ksp.sk/2014/real/solutions/booklet.pdf
+ * Learn about hack from https://ipsc.ksp.sk/2014/real/solutions/booklet.pdf
+ * Source: self
  */
 
 struct Hack {
