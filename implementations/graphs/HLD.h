@@ -7,7 +7,7 @@
 
 #include "SegmentTreeLazy.h"
 
-template<bool VAL_IN_EDGES>
+template<bool VAL_IN_EDGES = false>
 struct HLD {
     int ti;
     vector<int> par, sz, depth, root, pos;
