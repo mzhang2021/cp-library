@@ -21,9 +21,7 @@ void dijkstra(int s) {
         if (d > dist[u])
             continue;
         for (auto [v, w] : adj[u])
-            if (dist[u] + w < dist[v]) {
-                dist[v] = dist[u] + w;
-                pq.emplace(dist[v], v);
-            }
+            if (dist[u] + w < dist[v])
+                pq.emplace(dist[v] = dist[u] + w, v);
     }
 }
