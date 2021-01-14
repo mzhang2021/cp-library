@@ -13,8 +13,7 @@ vector<pair<int, int>> adj[MAXN];
 void dijkstra(int s) {
     memset(dist, 127, sizeof(dist));
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    dist[s] = 0;
-    pq.emplace(0, s);
+    pq.emplace(dist[s] = 0, s);
     while (!pq.empty()) {
         auto [d, u] = pq.top();
         pq.pop();
