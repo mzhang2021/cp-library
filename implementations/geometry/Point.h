@@ -35,7 +35,7 @@ struct Point {
     friend T dist2(const Point<T> &a, const Point<T> &b) {return (a - b).mag2();}
     friend double dist(const Point<T> &a, const Point<T> &b) {return (a - b).mag();}
     friend T ccw(const Point<T> &a, const Point<T> &b, const Point<T> &o) {return cross(a - o, b - o);}
-    friend double angle(const Point<T> &a, const Point<T> &b) {return atan2(cross(a, b), dot(a, b));}
+    friend double angle(const Point<T> &a, const Point<T> &b) {return abs(atan2(cross(a, b), dot(a, b)));}
     friend Point<T> rot(const Point<T> &p, const Point<T> &o, double ang) {return o + (p - o).rot(ang);}
     friend ostream& operator << (ostream &os, const Point &p) {return os << "(" << p.x << ", " << p.y << ")";}
 };
