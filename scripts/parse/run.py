@@ -15,7 +15,7 @@ import os
 from os import path
 import filecmp
 
-CPP_COMPILE = 'g++ -std=c++17 -O2 -Wall -Wshadow -DLOCAL -Wl,--stack,268435456 -I C:/Users/Max/ac-library '
+CPP_COMPILE = 'g++ -std=c++17 -O2 -Wall -Wextra -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -DLOCAL -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -Wl,--stack,268435456 -I C:/Users/Max/ac-library '
 
 def printFile(name):
     f = open(name, 'r')
