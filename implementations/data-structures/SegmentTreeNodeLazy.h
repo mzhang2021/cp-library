@@ -35,7 +35,7 @@ struct SegmentTree {
         build(1, 0, n-1);
     }
 
-    SegmentTree(const vector<int> &_a) : n(_a.size()), a(_a), st(4*n) {
+    SegmentTree(const vector<int> &_a) : n((int) _a.size()), a(_a), st(4*n) {
         build(1, 0, n-1);
     }
 
