@@ -12,9 +12,12 @@ struct Query {
     int l, r, idx;
 
     bool operator < (const Query &other) const {
-        if (l / SZ == other.l / SZ)
-            return (l / SZ % 2 ? r > other.r : r < other.r);
-        return l / SZ < other.l / SZ;
+        if (l / SZ == other.l / SZ) {
+            if (r == other.r)
+                return idx < other.idx;
+            return l / SZ % 2 ? r > other.r : r < other.r;
+        }
+        return l < other.l;
     }
 };
 
