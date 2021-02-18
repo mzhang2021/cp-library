@@ -9,6 +9,7 @@ template<typename T>
 struct Point {
     T x, y;
     Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}
+    template<typename S> Point(const Point<S> &p) : x((T) p.x), y((T) p.y) {}
     Point operator + (const Point &other) const {return Point(x + other.x, y + other.y);}
     Point operator - (const Point &other) const {return Point(x - other.x, y - other.y);}
     Point operator * (T c) const {return Point(x * c, y * c);}
