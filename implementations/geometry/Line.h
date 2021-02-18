@@ -40,7 +40,7 @@ struct Line {
             p = Point<double>(numeric_limits<double>::max(), numeric_limits<double>::max());
             return onLine(s.a, t);
         }
-        p = s.a + Point<double>(s.ab * (cross(t.a, t.ab) + cross(t.ab, s.a))) / (double) w;
+        p = Point<double>(s.ab * (cross(t.a, t.ab) + cross(t.ab, s.a))) / (double) w + s.a;
         return true;
     }
 
