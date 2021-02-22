@@ -21,7 +21,7 @@ struct RMQ {
     }
 
     T query(int i, int j) {
-        int k = 31 - __builtin_clz(j - i + 1);
+        int k = __lg(j - i + 1);
         return min(spt[k][i], spt[k][j-(1<<k)+1]);
     }
 };
