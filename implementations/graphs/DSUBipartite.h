@@ -5,17 +5,12 @@
  * Time: O(alpha(n)), where alpha(n) is the inverse Ackermann function
  */
 
-template<int SZ>
 struct DSU {
-    int par[SZ], sz[SZ];
-    bool color[SZ];
+    vector<int> par, sz;
+    vector<bool> color;
 
-    void init(int n) {
-        for (int i=0; i<n; i++) {
-            par[i] = i;
-            sz[i] = 1;
-            color[i] = false;
-        }
+    DSU(int n) : par(n), sz(n, 1), color(n) {
+        iota(par.begin(), par.end(), 0);
     }
 
     int find(int u) {

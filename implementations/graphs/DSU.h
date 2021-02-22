@@ -5,21 +5,15 @@
  * Time: O(alpha(n)), where alpha(n) is the inverse Ackermann function
  */
 
-template<int SZ>
 struct DSU {
-    int par[SZ], sz[SZ];
+    vector<int> par, sz;
 
-    void init(int n) {
-        for (int i=0; i<n; i++) {
-            par[i] = i;
-            sz[i] = 1;
-        }
+    DSU(int n) : par(n), sz(n, 1) {
+        iota(par.begin(), par.end(), 0);
     }
 
     int find(int u) {
-        if (u != par[u])
-            par[u] = find(par[u]);
-        return par[u];
+        return u == par[u] ? u : par[u] = find(par[u]);
     }
 
     bool same(int u, int v) {
