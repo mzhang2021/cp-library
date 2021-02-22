@@ -5,59 +5,61 @@
  * Time: O(n log n) preprocessing, O(log n) query
  */
 
-const int MAXN = 1e5 + 5;
-const int LOG = 17;
+struct BinaryLift {
+    int n, lg;
+    vector<int> depth;
+    vector<vector<int>> adj, up;
 
-int n, depth[MAXN], up[MAXN][LOG];
-vector<int> adj[MAXN];
+    BinaryLift(int _n) : n(_n), lg(__lg(n) + 1), depth(n), adj(n), up(n, vector<int>(lg, -1)) {}
 
-void dfs(int u) {
-    for (int v : adj[u])
-        if (v != up[u][0]) {
-            up[v][0] = u;
-            depth[v] = depth[u] + 1;
-            dfs(v);
-        }
-}
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
 
-void preprocess() {
-    memset(up, -1, sizeof(up));
-    dfs(0);
+    void init(int r = 0) {
+        dfs(r);
+        for (int j=1; j<lg; j++)
+            for (int i=0; i<n; i++)
+                if (up[i][j-1] != -1)
+                    up[i][j] = up[up[i][j-1]][j-1];
+    }
 
-    for (int j=1; 1<<j<=n; j++)
-        for (int i=0; i<n; i++)
-            if (up[i][j-1] != -1)
-                up[i][j] = up[up[i][j-1]][j-1];
-}
+    void dfs(int u) {
+        for (int v : adj[u])
+            if (v != up[u][0]) {
+                depth[v] = depth[u] + 1;
+                up[v][0] = u;
+                dfs(v);
+            }
+    }
 
-int lca(int u, int v) {
-    if (depth[u] < depth[v])
-        swap(u, v);
+    int lca(int u, int v) {
+        if (depth[u] < depth[v])
+            swap(u, v);
+        for (int j=lg-1; j>=0; j--)
+            if (depth[u] - (1 << j) >= depth[v])
+                u = up[u][j];
+        if (u == v)
+            return u;
+        for (int j=lg-1; j>=0; j--)
+            if (up[u][j] != up[v][j]) {
+                u = up[u][j];
+                v = up[v][j];
+            }
+        return up[u][0];
+    }
 
-    for (int j=LOG-1; j>=0; j--)
-        if (depth[u] - (1 << j) >= depth[v])
-            u = up[u][j];
+    int dist(int u, int v) {
+        return depth[u] + depth[v] - 2 * depth[lca(u, v)];
+    }
 
-    if (u == v)
+    int kthAnc(int u, int k) {
+        if (k > depth[u])
+            return -1;
+        for (int j=0; j<lg; j++)
+            if (k & (1 << j))
+                u = up[u][j];
         return u;
-
-    for (int j=LOG-1; j>=0; j--)
-        if (up[u][j] != up[v][j]) {
-            u = up[u][j];
-            v = up[v][j];
-        }
-
-    return up[u][0];
-}
-
-int kthAncestor(int u, int k) {
-    for (int j=LOG-1; j>=0; j--)
-        if (up[u][j] != -1 && 1 << j <= k) {
-            u = up[u][j];
-            k -= 1 << j;
-        }
-
-    if (k > 0)
-        return -1;
-    return u;
-}
+    }
+};
