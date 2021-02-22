@@ -8,11 +8,11 @@
 #include "../data-structures/RMQ.h"
 
 struct LCA {
-    vector<int> in, path, ret, depth;
+    vector<int> pos, depth, path, ret;
     vector<vector<int>> adj;
     RMQ<int> rmq;
 
-    LCA(int n) : in(n), depth(n), adj(n) {}
+    LCA(int n) : pos(n), depth(n), adj(n) {}
 
     void addEdge(int u, int v) {
         adj[u].push_back(v);
@@ -25,22 +25,22 @@ struct LCA {
     }
 
     void dfs(int u, int p) {
-        in[u] = (int) path.size();
+        pos[u] = (int) path.size();
         path.push_back(u);
-        ret.push_back(in[u]);
+        ret.push_back(pos[u]);
         for (int v : adj[u])
             if (v != p) {
                 depth[v] = depth[u] + 1;
                 dfs(v, u);
                 path.push_back(u);
-                ret.push_back(in[u]);
+                ret.push_back(pos[u]);
             }
     }
 
     int lca(int u, int v) {
-        if (in[u] > in[v])
+        if (pos[u] > pos[v])
             swap(u, v);
-        return path[rmq.query(in[u], in[v])];
+        return path[rmq.query(pos[u], pos[v])];
     }
 
     int dist(int u, int v) {
