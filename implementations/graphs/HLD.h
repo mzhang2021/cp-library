@@ -21,9 +21,9 @@ struct HLD {
         adj[v].push_back(u);
     }
 
-    void init() {
-        dfsSz(0);
-        dfsHld(0);
+    void init(int r = 0) {
+        dfsSz(r);
+        dfsHld(r);
     }
 
     void dfsSz(int u) {
