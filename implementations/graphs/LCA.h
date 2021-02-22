@@ -1,6 +1,6 @@
 /**
  * Description: Finds the lowest common ancestor of two nodes in a tree.
- * Source: Competitive Programming 3
+ * Source: https://github.com/kth-competitive-programming/kactl/blob/master/content/graph/LCA.h
  * Verification: https://www.spoj.com/problems/LCA/
  * Time: O(n log n) preprocessing, O(1) query
  */
