@@ -1,5 +1,6 @@
 /**
  * Description: Decomposes graph into 2-edge-connected components and builds a bridge tree of them.
+ * Note that if there are multiple edges between the same pair, you have to assign each edge an id instead of checking if v equals the parent in the DFS.
  * Source: self
  * Verification: https://codeforces.com/gym/100676 (problem H), https://www.hackerrank.com/contests/101hack26/challenges/sherlock-and-queries-on-the-graph/problem
  * Time: O(n + m)
