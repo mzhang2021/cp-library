@@ -10,7 +10,7 @@ struct BinaryLift {
     vector<int> depth;
     vector<vector<int>> adj, up;
 
-    BinaryLift(int _n) : n(_n), lg(__lg(n) + 1), depth(n), adj(n), up(n, vector<int>(lg, -1)) {}
+    BinaryLift(int _n) : n(_n), lg(__lg(n - 1) + 1), depth(n), adj(n), up(n, vector<int>(lg, -1)) {}
 
     void addEdge(int u, int v) {
         adj[u].push_back(v);
