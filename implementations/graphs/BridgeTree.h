@@ -52,7 +52,7 @@ struct BridgeTree {
                             stk.pop_back();
                         }
                     }
-                } else if (num[u] > num[v]) {
+                } else {
                     low = min(low, num[v]);
                 }
             }
