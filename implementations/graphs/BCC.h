@@ -1,59 +1,70 @@
 /**
- * Description: Decomposes graph into biconnected components, finds articulation points and bridges.
- * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/DFS/BCC%20(12.4).h
- * Verification: https://codeforces.com/contest/118/problem/E
+ * Description: Decomposes graph into biconnected components, finds articulation points, builds block-cut tree.
+ * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/DFS/BCC%20(12.4).h, https://ideone.com/hCUME3
+ * Verification: https://codeforces.com/contest/118/problem/E, https://cses.fi/problemset/task/1705/
  * Time: O(n + m)
  */
 
-#define MAXN 100000
+struct BCC {
+    int n, ti;
+    vector<int> num, id, stk;
+    vector<bool> art;
+    vector<vector<int>> adj, tree, comp;
 
-int n, ti, bccCount, num[MAXN], low[MAXN];
-vector<pair<int, int>> adj[MAXN];
-vector<vector<int>> comp;
-stack<int> st;
+    BCC(int _n) : n(_n), ti(0), num(n), id(n), art(n), adj(n) {}
 
-void dfs(int u, int p = -1) {
-    num[u] = low[u] = ti++;
-    int numChildren = 0;
-    for (auto e : adj[u])
-        if (e.first != p) {
-            if (num[e.first] == -1) {
-                numChildren++;
-                st.push(e.second);
-                dfs(e.first, u);
-                low[u] = min(low[u], low[e.first]);
-                if ((p == -1 && numChildren > 1) || (p != -1 && num[u] <= low[e.first])) {  // <= for articulation point, < for bridge
-                    vector<int> tmp;
-                    while (st.top() != e.second) {
-                        tmp.push_back(st.top());
-                        st.pop();
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    void init() {
+        for (int u=0; u<n; u++)
+            if (!num[u]) {
+                dfs(u, -1);
+                if (num[stk.back()] == ti)
+                    art[stk.back()] = true;
+                stk.pop_back();
+            }
+        for (int u=0; u<n; u++)
+            if (art[u]) {
+                id[u] = (int) tree.size();
+                tree.emplace_back();
+            }
+        for (auto &c : comp) {
+            int v = (int) tree.size();
+            tree.emplace_back();
+            for (int u : c) {
+                if (art[u]) {
+                    tree[id[u]].push_back(v);
+                    tree[v].push_back(id[u]);
+                } else {
+                    id[u] = v;
+                }
+            }
+        }
+    }
+
+    int dfs(int u, int p) {
+        int low = num[u] = ++ti;
+        stk.push_back(u);
+        for (int v : adj[u])
+            if (v != p) {
+                if (!num[v]) {
+                    int ret = dfs(v, u);
+                    low = min(low, ret);
+                    if (num[u] <= ret) {
+                        art[u] = p != -1 || num[v] > num[u] + 1;
+                        comp.push_back({u});
+                        while (comp.back().back() != v) {
+                            comp.back().push_back(stk.back());
+                            stk.pop_back();
+                        }
                     }
-                    tmp.push_back(st.top());
-                    st.pop();
-                    comp.push_back(tmp);
-                    bccCount++;
+                } else {
+                    low = min(low, num[v]);
                 }
-            } else if (num[e.first] < num[u]) {
-                low[u] = min(low[u], num[e.first]);
-                st.push(e.second);
             }
-        }
-}
-
-void bcc() {
-    memset(num, -1, sizeof(num));
-    ti = bccCount = 0;
-    for (int i=0; i<n; i++)
-        if (num[i] == -1) {
-            dfs(i);
-            while (!st.empty()) {
-                vector<int> tmp;
-                while (!st.empty()) {
-                    tmp.push_back(st.top());
-                    st.pop();
-                }
-                comp.push_back(tmp);
-                bccCount++;
-            }
-        }
-}
+        return low;
+    }
+};
