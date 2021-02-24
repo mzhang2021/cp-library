@@ -47,11 +47,11 @@ struct BridgeTree {
                     low = min(low, ret);
                     if (num[u] < ret) {
                         comp.emplace_back();
-                        while (comp.back().empty() || comp.back().back() != v) {
+                        do {
                             id[stk.back()] = (int) comp.size() - 1;
                             comp.back().push_back(stk.back());
                             stk.pop_back();
-                        }
+                        } while (comp.back().back() != v);
                     }
                 } else {
                     low = min(low, num[v]);

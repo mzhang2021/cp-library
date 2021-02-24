@@ -43,11 +43,11 @@ struct SCC {
         }
         if (low == num[u]) {
             comp.emplace_back();
-            while (comp.back().empty() || comp.back().back() != u) {
+            do {
                 id[stk.back()] = (int) comp.size() - 1;
                 comp.back().push_back(stk.back());
                 stk.pop_back();
-            }
+            } while (comp.back().back() != u);
         }
         return low;
     }
