@@ -26,23 +26,21 @@ struct BCC {
                     art[stk.back()] = true;
                 stk.pop_back();
             }
+        tree.resize(comp.size());
         for (int u=0; u<n; u++)
             if (art[u]) {
                 id[u] = (int) tree.size();
                 tree.emplace_back();
             }
-        for (auto &c : comp) {
-            int v = (int) tree.size();
-            tree.emplace_back();
-            for (int u : c) {
+        for (int i=0; i<(int)comp.size(); i++)
+            for (int u : comp[i]) {
                 if (art[u]) {
-                    tree[id[u]].push_back(v);
-                    tree[v].push_back(id[u]);
+                    tree[id[u]].push_back(i);
+                    tree[i].push_back(id[u]);
                 } else {
-                    id[u] = v;
+                    id[u] = i;
                 }
             }
-        }
     }
 
     int dfs(int u, int p) {
