@@ -1,10 +1,11 @@
 """Run program on samples
 
 Usage:
-  run.py <filename> [<testname>]
+  run.py <filename> [<testname>] [--debug=<bool>]
 
 Options:
-  -h --help     Show this screen.
+  -h --help         Show this screen.
+  --debug=<bool>    Will include the -D_GLIBCXX_DEBUG flag, which changes certain std behavior. [default: 1]
 """
 
 from docopt import docopt
@@ -15,7 +16,7 @@ import os
 from os import path
 import filecmp
 
-CPP_COMPILE = 'g++ -std=c++17 -O2 -DLOCAL -D_GLIBCXX_DEBUG -Wl,--stack,268435456 -I C:/Users/Max/ac-library '
+CPP_COMPILE = 'g++ -std=c++17 -O2 -DLOCAL -Wl,--stack,268435456 -I C:/Users/Max/ac-library '
 
 def printFile(name):
     f = open(name, 'r')
@@ -39,7 +40,7 @@ def remove(name):
     except:
         pass
 
-def execute(name, ext, test):
+def execute(name, ext, test, debug):
     if test is None:
         test = name
 
@@ -57,7 +58,7 @@ def execute(name, ext, test):
     # Compile the program if c++
     if ext == 'cpp':
         remove(name + '.exe')
-        os.system(CPP_COMPILE + name + '.cpp -o ' + name)
+        os.system(CPP_COMPILE + ('-D_GLIBCXX_DEBUG ' if debug else '') + name + '.cpp -o ' + name)
         if not path.exists(name + '.exe'):
             print("Failed to compile.")
             return
@@ -113,7 +114,7 @@ def main():
         arguments['<filename>'] += '.cpp'
     name, ext = arguments['<filename>'].rsplit('.', 1)
     test = arguments['<testname>']
-    execute(name, ext, test)
+    execute(name, ext, test, arguments['--debug'] == '1')
 
 if __name__ == '__main__':
     try:
