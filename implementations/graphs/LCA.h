@@ -12,7 +12,7 @@ struct LCA {
     vector<vector<int>> adj;
     RMQ<int> rmq;
 
-    LCA(int n) : pos(n), depth(n), adj(n) {}
+    LCA(int n) : pos(n), depth(n), adj(n), rmq({}) {}
 
     void addEdge(int u, int v) {
         adj[u].push_back(v);

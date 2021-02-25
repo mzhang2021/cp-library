@@ -9,8 +9,6 @@ template<typename T>
 struct RMQ {
     vector<vector<T>> spt;
 
-    RMQ() {}
-
     RMQ(const vector<T> &a) : spt(1, a) {
         int n = (int) a.size();
         for (int j=1; 1<<j<=n; j++) {
