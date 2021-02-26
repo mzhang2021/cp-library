@@ -5,7 +5,7 @@
  * Time: O(n)
  */
 
-#define MAX 10000
+const int MAX = 10000;
 
 bitset<MAX> prime;
 vector<int> primeList;
@@ -17,7 +17,7 @@ void sieve() {
         if (prime[i])
             primeList.push_back(i);
         for (int j : primeList) {
-            if (i * j >= MAX)
+            if (i > (MAX - 1) / j)
                 break;
             prime[i * j] = 0;
             if (i % j == 0)
