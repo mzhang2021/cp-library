@@ -42,6 +42,32 @@ void pull(pNode t) {
     }
 }
 
+void heapify(pNode t) {
+    if (!t)
+        return;
+    pNode mx = t;
+    if (t->l && t->l->priority > mx->priority)
+        mx = t->l;
+    if (t->r && t->r->priority > mx->priority)
+        mx = t->r;
+    if (mx != t) {
+        swap(t->priority, mx->priority);
+        heapify(mx);
+    }
+}
+
+pNode build(int n, int *a) {
+    if (n == 0)
+        return NULL;
+    int mid = n / 2;
+    pNode t = new Node(a[mid]);
+    t->l = build(mid, a);
+    t->r = build(n - mid - 1, a + mid + 1);
+    heapify(t);
+    pull(t);
+    return t;
+}
+
 void split(pNode t, pNode &l, pNode &r, int pos, int add = 0) {
     if (!t) {
         l = r = NULL;
