@@ -5,11 +5,13 @@
  * Time: O(log n)
  */
 
+#include "../other/RandomSeed.h"
+
 struct Node {
     int priority, sz, val, ans, lazy;
     Node *l, *r;
 
-    Node(int _val) : priority(rand() + (rand() << 15)), sz(1), val(_val), ans(val), lazy(0), l(NULL), r(NULL) {}
+    Node(int _val) : priority(rng()), sz(1), val(_val), ans(val), lazy(0), l(NULL), r(NULL) {}
 };
 typedef Node* pNode;
 
