@@ -16,11 +16,9 @@ void sieve() {
     for (int i=2; i<MAX; i++) {
         if (prime[i])
             primeList.push_back(i);
-        for (int j : primeList) {
-            if (i > (MAX - 1) / j)
-                break;
-            prime[i * j] = 0;
-            if (i % j == 0)
+        for (int j=0; j<(int)primeList.size() && primeList[j]<=(MAX-1)/i; j++) {
+            prime[i * primeList[j]] = 0;
+            if (i % primeList[j] == 0)
                 break;
         }
     }
