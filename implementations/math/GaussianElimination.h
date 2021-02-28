@@ -18,8 +18,7 @@ int solve(vector<vector<double>> &a, vector<double> &b, vector<double> &x) {
                 pivot = i;
         if (abs(a[pivot][c]) < EPS)
             continue;
-        for (int j=c; j<m; j++)
-            swap(a[r][j], a[pivot][j]);
+        swap(a[r], a[pivot]);
         swap(b[r], b[pivot]);
         pos[c] = r;
         for (int i=0; i<n; i++)
