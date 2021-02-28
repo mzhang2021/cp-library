@@ -20,9 +20,9 @@ struct Dinic {
 
     Dinic(int n, int _s, int _t) : m(0), s(_s), t(_t), level(n), ptr(n), adj(n) {}
 
-    void addEdge(int u, int v, long long cap) {
+    void addEdge(int u, int v, long long cap, long long rcap = 0) {
         edges.emplace_back(u, v, cap);
-        edges.emplace_back(v, u, 0);
+        edges.emplace_back(v, u, rcap);
         adj[u].push_back(m++);
         adj[v].push_back(m++);
     }
