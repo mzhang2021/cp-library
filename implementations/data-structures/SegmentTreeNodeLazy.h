@@ -46,7 +46,6 @@ struct SegmentTree {
             st[p].leaf(a[l]);
             return;
         }
-
         int m = (l + r) / 2;
         build(2*p, l, m);
         build(2*p+1, m+1, r);
@@ -65,10 +64,8 @@ struct SegmentTree {
 
     Node query(int p, int i, int j) {
         push(p);
-
         if (st[p].l == i && st[p].r == j)
             return st[p];
-
         int m = (st[p].l + st[p].r) / 2;
         if (j <= m)
             return query(2*p, i, j);
@@ -89,9 +86,7 @@ struct SegmentTree {
             push(p);
             return;
         }
-
         push(p);
-
         int m = (st[p].l + st[p].r) / 2;
         if (j <= m) {
             update(2*p, i, j, val);

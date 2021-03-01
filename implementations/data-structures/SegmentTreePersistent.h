@@ -36,7 +36,6 @@ int query(int p, int l, int r, int i, int j) {
         return 0;
     if (i <= l && r <= j)
         return st[p];
-
     int m = (l + r) / 2;
     return query(pl[p], l, m, i, j) + query(pr[p], m+1, r, i, j);
 }
@@ -44,7 +43,6 @@ int query(int p, int l, int r, int i, int j) {
 int update(int p, int l, int r, int idx, int val) {
     if (l == r)
         return newLeaf(st[p] + val);
-
     int m = (l + r) / 2;
     if (idx <= m)
         return newParent(update(pl[p], l, m, idx, val), pr[p]);
