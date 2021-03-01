@@ -27,7 +27,6 @@ void gen() {
     while (!q.empty()) {
         int u = q.front();
         q.pop();
-
         for (int j=0; j<ALPHA; j++) {
             int v = trie[u][j];
             if (v) {

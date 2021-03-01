@@ -35,7 +35,6 @@ struct Dinic {
         while (!q.empty()) {
             int u = q.front();
             q.pop();
-
             for (int e : adj[u])
                 if (edges[e].cap - edges[e].flow > 0 && level[edges[e].v] == -1) {
                     level[edges[e].v] = level[u] + 1;
