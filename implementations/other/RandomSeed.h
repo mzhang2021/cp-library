@@ -1,7 +1,7 @@
 /**
  * Description: A randomized seed that's hack proof.
  * Source: https://codeforces.com/blog/entry/61587, https://codeforces.com/blog/entry/61675
- * Verification: not yet
+ * Verification: seems fine
  * Time: O(1)
  */
 
