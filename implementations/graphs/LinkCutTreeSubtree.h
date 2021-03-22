@@ -1,5 +1,5 @@
 /**
- * Description: Dynamic connectivity for forests, supports subtree aggregates
+ * Description: Dynamic connectivity for forests, supports subtree aggregates. Invertibility is required.
  * Source: https://codeforces.com/blog/entry/67637
  * Verification: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
  * Time: O(log n)
