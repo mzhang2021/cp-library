@@ -19,12 +19,12 @@ int getSz(Node *u) {
 
 void add(Node *u, Node *v) {
     if (!u || !v) return;
-    u->vir -= v->sz;
+    u->vir += v->sz;
 }
 
 void rem(Node *u, Node *v) {
     if (!u || !v) return;
-    u->vir += v->sz;
+    u->vir -= v->sz;
 }
 
 void push(Node *u) {
@@ -112,7 +112,7 @@ void splay(Node *u) {
 Node* access(Node *u) {
     splay(u);
     if (u->r) {
-        rem(u, u->r);
+        add(u, u->r);
         u->r->pp = u;
         u->r->par = NULL;
         u->r = NULL;
@@ -123,11 +123,11 @@ Node* access(Node *u) {
         v = u->pp;
         splay(v);
         if (v->r) {
-            rem(v, v->r);
+            add(v, v->r);
             v->r->pp = v;
             v->r->par = NULL;
         }
-        add(v, u);
+        rem(v, u);
         v->r = u;
         u->par = v;
         u->pp = NULL;
