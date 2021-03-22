@@ -8,7 +8,8 @@
 #include "../other/RandomSeed.h"
 
 struct Node {
-    int key, priority;
+    int key;
+    uint32_t priority;
     Node *l, *r;
 
     Node(int val) : key(val), priority(rng()), l(NULL), r(NULL) {}

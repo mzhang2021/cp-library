@@ -8,10 +8,11 @@
 #include "../other/RandomSeed.h"
 
 struct Node {
-    int priority, sz, val, ans, lazy;
+    int sz, val, ans, lazy;
+    uint32_t priority;
     Node *l, *r;
 
-    Node(int _val) : priority(rng()), sz(1), val(_val), ans(val), lazy(0), l(NULL), r(NULL) {}
+    Node(int _val) : sz(1), val(_val), ans(val), lazy(0), priority(rng()), l(NULL), r(NULL) {}
 };
 typedef Node* pNode;
 
