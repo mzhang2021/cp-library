@@ -22,7 +22,7 @@ struct SegmentTree {
     vector<int> a;
     vector<Node> st;
 
-    SegmentTree(int _n) : n(_n), st(4*n) {
+    SegmentTree(int _n) : n(_n), a(n), st(4*n) {
         build(1, 0, n-1);
     }
 
