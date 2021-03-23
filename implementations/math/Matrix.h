@@ -12,7 +12,7 @@ struct Matrix {
 
     Matrix(int _n, int _m) : n(_n), m(_m), mat(n, vector<long long>(m)) {}
 
-    Matrix operator += (const Matrix &other) {
+    Matrix& operator += (const Matrix &other) {
         for (int i=0; i<n; i++)
             for (int j=0; j<m; j++) {
                 mat[i][j] += other.mat[i][j];
@@ -21,7 +21,7 @@ struct Matrix {
         return *this;
     }
 
-    Matrix operator -= (const Matrix &other) {
+    Matrix& operator -= (const Matrix &other) {
         for (int i=0; i<n; i++)
             for (int j=0; j<m; j++) {
                 mat[i][j] -= other.mat[i][j];
@@ -50,7 +50,7 @@ struct Matrix {
         return a -= b;
     }
 
-    Matrix operator *= (const Matrix &other) {
+    Matrix& operator *= (const Matrix &other) {
         return *this = *this * other;
     }
 
