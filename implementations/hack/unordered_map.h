@@ -27,8 +27,7 @@ struct Hack {
         vector<long long> v;
         v.reserve(N);
         for (long long x=cutoff[start]; x<=MAX; x+=cutoff[start])
-            if (x % cutoff[start] == 0)
-                v.push_back(x);
+            v.push_back(x);
         long long val = 1;
         while ((int) v.size() < cutoff[start]) {
             if (val % cutoff[start] != 0)
