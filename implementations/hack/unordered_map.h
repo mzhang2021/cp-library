@@ -9,7 +9,7 @@ struct Hack {
     const int N = 1e6;
     const long long MAX = 1e9;
 
-    void gen(int NUM_PRIMES = 1) {
+    void gen() {
         unordered_set<int> st;
         vector<int> cutoff;
         for (int i=0; i<N; i++) {
@@ -18,50 +18,22 @@ struct Hack {
             if (cutoff.empty() || bk != cutoff.back())
                 cutoff.push_back(bk);
         }
-        assert((int) cutoff.size() > NUM_PRIMES);
 
         pair<long long, int> best;
         for (int i=0; i<(int)cutoff.size()-1; i++)
             best = max(best, {min(MAX / cutoff[i+1], (long long) cutoff[i]) * (N - cutoff[i]), i + 1});
-        int start = max(best.second, NUM_PRIMES);
+        int start = best.second;
 
         vector<long long> v;
         v.reserve(N);
-        int cnt = 0;
-        for (int i=start; i>=start-NUM_PRIMES+1; i--) {
-            for (long long j=cutoff[i]; j<=MAX && cnt<cutoff[start-NUM_PRIMES]; j+=cutoff[i]) {
-                bool ok = true;
-                for (int k=start; k>i; k--)
-                    if (j % cutoff[k] == 0) {
-                        ok = false;
-                        break;
-                    }
-                if (ok) {
-                    v.push_back(j);
-                    cnt++;
-                }
-            }
-        }
+        for (long long x=cutoff[start]; x<=MAX; x+=cutoff[start])
+            if (x % cutoff[start] == 0)
+                v.push_back(x);
         long long val = 1;
-        while ((int) v.size() < cutoff[start-NUM_PRIMES]) {
-            bool ok = true;
-            for (int i=start-NUM_PRIMES+1; i<=start; i++)
-                if (val % cutoff[i] == 0) {
-                    ok = false;
-                    break;
-                }
-            if (ok)
+        while ((int) v.size() < cutoff[start]) {
+            if (val % cutoff[start] != 0)
                 v.push_back(val);
             val++;
-        }
-        for (int i=start-NUM_PRIMES+1; i<start; i++) {
-            val = cutoff[i];
-            for (int j=0; j<cutoff[i]-cutoff[i-1]; j++) {
-                v.push_back(val);
-                val += cutoff[i];
-                if (val > MAX)
-                    val = cutoff[i];
-            }
         }
         val = cutoff[start];
         while ((int) v.size() < N) {
