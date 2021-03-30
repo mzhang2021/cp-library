@@ -12,7 +12,7 @@ struct Node {
         ans += val;
     }
 
-    void pull(Node &a, Node &b) {
+    void pull(const Node &a, const Node &b) {
         ans = a.ans + b.ans;
     }
 
