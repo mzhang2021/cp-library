@@ -9,7 +9,7 @@
 
 template<typename T>
 double area(const vector<Point<T>> &p) {
-    int n = p.size();
+    int n = (int) p.size();
     T ret = 0;
     for (int i=0; i<n; i++)
         ret += cross(p[i], p[(i+1)%n]);
