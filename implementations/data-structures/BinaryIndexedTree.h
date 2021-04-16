@@ -7,10 +7,10 @@
 
 template<typename T>
 struct BIT {
-    int n;
+    int n, lg;
     vector<T> bit;
 
-    BIT(int _n) : n(_n), bit(n + 1) {}
+    BIT(int _n) : n(_n), lg(__lg(n)), bit(n + 1) {}
 
     T query(int i) {
         T ret = 0;
@@ -26,5 +26,17 @@ struct BIT {
     void update(int i, T val) {
         for (; i<=n; i+=i&-i)
             bit[i] += val;
+    }
+
+    int kth(int k) {
+        int ret = 0;
+        for (int i=lg; i>=0; i--) {
+            ret += 1 << i;
+            if (ret <= n && bit[ret] < k)
+                k -= bit[ret];
+            else
+                ret -= 1 << i;
+        }
+        return ret + 1;
     }
 };
