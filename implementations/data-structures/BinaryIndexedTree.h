@@ -12,6 +12,14 @@ struct BIT {
 
     BIT(int _n) : n(_n), lg(__lg(n)), bit(n + 1) {}
 
+    BIT(const vector<T> &a) : n((int) a.size()), lg(__lg(n)), bit(n + 1) {
+        for (int i=1; i<=n; i++) {
+            bit[i] += a[i-1];
+            if (i + (i & -i) <= n)
+                bit[i+(i&-i)] += bit[i];
+        }
+    }
+
     T query(int i) {
         T ret = 0;
         for (; i>0; i-=i&-i)
