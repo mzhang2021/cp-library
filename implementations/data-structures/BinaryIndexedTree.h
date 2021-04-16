@@ -28,7 +28,7 @@ struct BIT {
             bit[i] += val;
     }
 
-    int kth(int k) {
+    int kth(T k) {
         int ret = 0;
         for (int i=lg; i>=0; i--) {
             ret += 1 << i;
