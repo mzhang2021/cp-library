@@ -56,7 +56,8 @@ struct HLD {
         }
         if (depth[u] > depth[v])
             swap(u, v);
-        op(pos[u] + VAL_IN_EDGES, pos[v]);
+        if (pos[u] + VAL_IN_EDGES <= pos[v])
+            op(pos[u] + VAL_IN_EDGES, pos[v]);
     }
 
     // path
