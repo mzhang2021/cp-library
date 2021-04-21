@@ -12,11 +12,21 @@ struct Matrix {
 
     Matrix(int _n, int _m) : n(_n), m(_m), mat(n, vector<long long>(m)) {}
 
+    Matrix(const vector<vector<long long>> &_mat) : n((int) _mat.size()), m((int) _mat[0].size()), mat(_mat) {
+        for (int i=0; i<n; i++)
+            for (int j=0; j<m; j++) {
+                mat[i][j] %= MOD;
+                if (mat[i][j] < 0)
+                    mat[i][j] += MOD;
+            }
+    }
+
     Matrix& operator += (const Matrix &other) {
         for (int i=0; i<n; i++)
             for (int j=0; j<m; j++) {
                 mat[i][j] += other.mat[i][j];
-                if (mat[i][j] >= MOD) mat[i][j] -= MOD;
+                if (mat[i][j] >= MOD)
+                    mat[i][j] -= MOD;
             }
         return *this;
     }
@@ -25,7 +35,8 @@ struct Matrix {
         for (int i=0; i<n; i++)
             for (int j=0; j<m; j++) {
                 mat[i][j] -= other.mat[i][j];
-                if (mat[i][j] < 0) mat[i][j] += MOD;
+                if (mat[i][j] < 0)
+                    mat[i][j] += MOD;
             }
         return *this;
     }
