@@ -5,39 +5,26 @@
  * Time: fast
  */
 
-template<int MOD>
+template<typename T>
 struct Matrix {
     int n, m;
-    vector<vector<long long>> mat;
+    vector<vector<T>> mat;
 
-    Matrix(int _n, int _m) : n(_n), m(_m), mat(n, vector<long long>(m)) {}
+    Matrix(int _n, int _m) : n(_n), m(_m), mat(n, vector<T>(m)) {}
 
-    Matrix(const vector<vector<long long>> &_mat) : n((int) _mat.size()), m((int) _mat[0].size()), mat(_mat) {
-        for (int i=0; i<n; i++)
-            for (int j=0; j<m; j++) {
-                mat[i][j] %= MOD;
-                if (mat[i][j] < 0)
-                    mat[i][j] += MOD;
-            }
-    }
+    Matrix(const vector<vector<T>> &_mat) : n((int) _mat.size()), m((int) _mat[0].size()), mat(_mat) {}
 
     Matrix& operator += (const Matrix &other) {
         for (int i=0; i<n; i++)
-            for (int j=0; j<m; j++) {
+            for (int j=0; j<m; j++)
                 mat[i][j] += other.mat[i][j];
-                if (mat[i][j] >= MOD)
-                    mat[i][j] -= MOD;
-            }
         return *this;
     }
 
     Matrix& operator -= (const Matrix &other) {
         for (int i=0; i<n; i++)
-            for (int j=0; j<m; j++) {
+            for (int j=0; j<m; j++)
                 mat[i][j] -= other.mat[i][j];
-                if (mat[i][j] < 0)
-                    mat[i][j] += MOD;
-            }
         return *this;
     }
 
@@ -45,11 +32,8 @@ struct Matrix {
         Matrix ret(n, other.m);
         for (int i=0; i<n; i++)
             for (int k=0; k<m; k++)
-                for (int j=0; j<other.m; j++) {
-                    ret.mat[i][j] += mat[i][k] * other.mat[k][j] % MOD;
-                    if (ret.mat[i][j] >= MOD)
-                        ret.mat[i][j] -= MOD;
-                }
+                for (int j=0; j<other.m; j++)
+                    ret.mat[i][j] += mat[i][k] * other.mat[k][j];
         return ret;
     }
 
@@ -65,20 +49,24 @@ struct Matrix {
         return *this = *this * other;
     }
 
-    vector<long long>& operator [] (int i) {
+    vector<T>& operator [] (int i) {
         return mat[i];
     }
 
-    friend Matrix power(Matrix m, long long b) {
-        Matrix ret(m.n, m.m);
-        for (int i=0; i<m.n; i++)
+    friend Matrix power(Matrix a, long long b) {
+        Matrix ret(a.n, a.m);
+        for (int i=0; i<a.n; i++)
             ret[i][i] = 1;
         while (b > 0) {
             if (b & 1)
-                ret *= m;
-            m *= m;
+                ret *= a;
+            a *= a;
             b >>= 1;
         }
         return ret;
+    }
+
+    friend ostream& operator << (ostream &os, const Matrix &a) {
+        return os << a.mat;
     }
 };
