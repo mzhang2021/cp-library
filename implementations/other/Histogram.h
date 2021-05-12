@@ -6,7 +6,7 @@
  */
 
 int histogram(const vector<int> &h) {
-    int n = h.size(), ret = 0;
+    int n = (int) h.size(), ret = 0;
     vector<int> stk{-1};
     for (int i=0; i<n; i++) {
         while (stk.back() != -1 && h[i] <= h[stk.back()]) {
