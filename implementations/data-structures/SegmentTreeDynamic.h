@@ -1,5 +1,5 @@
 /**
- * Description: Performs range queries and range updates. Supports sparse indices.
+ * Description: Performs range queries and point updates. Supports sparse indices.
  * Source: self
  * Verification: https://acm.timus.ru/problem.aspx?space=1&num=1439
  * Time: O(log n) query and update
