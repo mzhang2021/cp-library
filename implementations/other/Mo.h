@@ -5,7 +5,6 @@
  * Time: O((n + q) sqrt(n)) or O(n sqrt(q))
  */
 
-const int MAX = 1e5 + 5;
 const int SZ = 300;
 
 struct Query {
@@ -21,31 +20,29 @@ struct Query {
     }
 };
 
-int q, a[MAX], ret[MAX];
-Query queries[MAX];
+void mo(int q, const vector<int> &a, const vector<Query> &queries) {
+    int ans = 0;
 
-int ans = 0;
+    auto add = [&] (int i) -> void {
+        ans += a[i];
+    };
 
-void add(int i) {
-    ans += a[i];
-}
+    auto rem = [&] (int i) -> void {
+        ans -= a[i];
+    };
 
-void rem(int i) {
-    ans -= a[i];
-}
-
-void mo() {
-    sort(queries, queries + q);
+    sort(queries.begin(), queries.end());
     int moLeft = 0, moRight = -1;
-    for (int i=0; i<q; i++) {
-        while (moLeft > queries[i].l)
+    vector<int> ret(q);
+    for (const Query &query : queries) {
+        while (moLeft > query.l)
             add(--moLeft);
-        while (moRight < queries[i].r)
+        while (moRight < query.r)
             add(++moRight);
-        while (moLeft < queries[i].l)
+        while (moLeft < query.l)
             rem(moLeft++);
-        while (moRight > queries[i].r)
+        while (moRight > query.r)
             rem(moRight--);
-        ret[queries[i].idx] = ans;
+        ret[query.idx] = ans;
     }
 }
