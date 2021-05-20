@@ -36,7 +36,7 @@ struct Dinic {
             int u = q.front();
             q.pop();
             for (int e : adj[u])
-                if (edges[e].cap - edges[e].flow > 0 && level[edges[e].v] == -1) {
+                if (edges[e].flow < edges[e].cap && level[edges[e].v] == -1) {
                     level[edges[e].v] = level[u] + 1;
                     q.push(edges[e].v);
                 }
@@ -45,12 +45,12 @@ struct Dinic {
     }
 
     long long dfs(int u, long long f) {
-        if (u == t)
+        if (f == 0 || u == t)
             return f;
         while (ptr[u] < (int) adj[u].size()) {
             int e = adj[u][ptr[u]], v = edges[e].v;
             long long nf;
-            if (level[u] + 1 == level[v] && edges[e].cap - edges[e].flow > 0 && (nf = dfs(v, min(f, edges[e].cap - edges[e].flow))) > 0) {
+            if (level[u] + 1 == level[v] && edges[e].flow < edges[e].cap && (nf = dfs(v, min(f, edges[e].cap - edges[e].flow))) > 0) {
                 edges[e].flow += nf;
                 edges[e^1].flow -= nf;
                 return nf;
@@ -60,12 +60,14 @@ struct Dinic {
         return 0;
     }
 
-    long long maxFlow() {
+    long long maxFlow(long long limit = LLONG_MAX) {
         long long ret = 0;
-        while (bfs()) {
+        while (limit > 0 && bfs()) {
             fill(ptr.begin(), ptr.end(), 0);
-            while (long long f = dfs(s, LLONG_MAX))
+            while (long long f = dfs(s, limit)) {
                 ret += f;
+                limit -= f;
+            }
         }
         return ret;
     }
