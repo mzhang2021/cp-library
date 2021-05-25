@@ -1,15 +1,5 @@
 // Source: https://codeforces.com/contest/1472/hacks/694823
 
-#include <algorithm>
-#include <string>
-#include <iostream>
-#include <vector>
-#include <cstdint>
-#include <numeric>
-#include <queue>
-#include <memory>
-#include <random>
-
 template<class T1, class T2>
 struct CasePointer {
     uintptr_t value = reinterpret_cast<uintptr_t>((T1 *) nullptr);
@@ -705,10 +695,3 @@ struct Generator {
         }
     }
 };
-
-int main() {
-    std::cin.sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    Generator().genEq(std::cout);
-    return 0;
-}
