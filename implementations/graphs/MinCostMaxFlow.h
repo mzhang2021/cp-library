@@ -14,18 +14,20 @@ struct Edge {
 
 struct MCMF {
     int m, n, s, t;
+    bool neg;
     vector<int> par;
     vector<long long> pi, dist;
     vector<Edge> edges;
     vector<vector<int>> adj;
 
-    MCMF(int _n, int _s, int _t) : m(0), n(_n), s(_s), t(_t), par(n), pi(n), dist(n), adj(n) {}
+    MCMF(int _n, int _s, int _t) : m(0), n(_n), s(_s), t(_t), neg(false), par(n), pi(n), dist(n), adj(n) {}
 
     void addEdge(int u, int v, long long cap, long long cost) {
         edges.emplace_back(u, v, cap, cost);
         edges.emplace_back(v, u, 0, -cost);
         adj[u].push_back(m++);
         adj[v].push_back(m++);
+        neg |= cost < 0;
     }
 
     bool path() {
@@ -62,7 +64,8 @@ struct MCMF {
     }
 
     pair<long long, long long> maxFlow(long long limit = LLONG_MAX) {
-        setpi();
+        if (neg)
+            setpi();
         long long retFlow = 0, retCost = 0;
         while (limit > 0 && path()) {
             for (int u=0; u<n; u++)
