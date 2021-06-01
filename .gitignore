@@ -1,5 +1,6 @@
 scripts/bash/**
 !scripts/bash/bash.bat
+!scripts/bash/bash.sh
 scripts/usaco/**
 !scripts/usaco/test.bat
 testcases/
