@@ -16,7 +16,7 @@ import os
 from os import path
 import filecmp
 
-CPP_COMPILE = 'g++ -std=c++17 -O2 -Wshadow -DLOCAL -g -I C:/Users/Max/ac-library '
+CPP_COMPILE = 'g++ -std=c++17 -O2 -Wshadow -DLOCAL -g -Wl,--stack,268435456 -I C:/Users/Max/ac-library '
 
 def printFile(name):
     f = open(name, 'r')
@@ -58,7 +58,7 @@ def execute(name, ext, test, debug):
     # Compile the program if c++
     if ext == 'cpp':
         remove(name + '.exe')
-        os.system(CPP_COMPILE + ('-D_GLIBCXX_DEBUG ' if debug else '') + name + '.cpp -o ' + name + '.exe')
+        os.system(CPP_COMPILE + ('-D_GLIBCXX_DEBUG ' if debug else '') + name + '.cpp -o ' + name)
         if not path.exists(name + '.exe'):
             print("Failed to compile.")
             return
@@ -79,9 +79,9 @@ def execute(name, ext, test, debug):
             print(f"Running Sample {num}.")
 
             if ext == 'cpp':
-                os.system('./' + name + '.exe < ' + str(probDir / file) + ' > temp.out')
+                os.system(name + ' < ' + str(probDir / file) + ' > temp.out')
             elif ext == 'py':
-                os.system('python3 ' + name + '.py < ' + str(probDir / file) + ' > temp.out')
+                os.system(name + '.py < ' + str(probDir / file) + ' > temp.out')
             else:
                 print("Unknown file extension.")
                 return
