@@ -2,7 +2,7 @@
  * Description: Finds the minimum cost maximum flow of a graph. Allows negative cost edges, but not negative cost cycles.
  * Source: https://usaco.guide/adv/min-cost-flow?lang=cpp, https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Flows%20(12.3)/MCMF_2.h
  * Verification: https://cses.fi/problemset/task/2121/
- * Time: O(F * m * log m)
+ * Time: O(n * m + F * m * log m)
  */
 
 struct Edge {
