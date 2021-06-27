@@ -4,3 +4,4 @@ scripts/bash/**
 scripts/usaco/**
 !scripts/usaco/test.bat
 testcases/
+
