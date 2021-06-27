@@ -104,7 +104,6 @@ def execute(name, ext, test, debug):
                 printFile('temp.out')
             print("-----------------------------------------------------------")
     print(f"{correct} / {tot} correct.")
-    print()
 
     remove('temp.out')
 
