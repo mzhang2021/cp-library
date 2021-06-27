@@ -28,7 +28,7 @@ import re
 import os
 from shutil import rmtree
 
-TEMPLATE_DIR = 'C:/Users/Max/cp-library/implementations/temp.cpp'
+TEMPLATE_DIR = '/media/max/DATA/cp-library/implementations/temp.cpp'
 
 # Returns unmarshalled or None
 def listen_once(*, timeout=None):
