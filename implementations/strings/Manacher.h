@@ -1,5 +1,6 @@
 /**
- * Description: Finds the longest palindromic substring of a string.
+ * Description: Finds the longest palindromic substring of a string. p[i] denotes the length of the longest palindrome centered at i, where if i is even, then centered on s[i / 2 - 1],
+ * and if i is odd, then centered in between s[i / 2 - 1] and s[i / 2].
  * Source: https://www.youtube.com/watch?v=nbTSfrEfo6M
  * Verification: https://leetcode.com/problems/longest-palindromic-substring/
  * Time: O(n)
