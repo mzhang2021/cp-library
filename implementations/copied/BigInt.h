@@ -1,4 +1,5 @@
 // Source: https://codeforces.com/blog/entry/22566
+// Known bug: negating 0 prints "-0"
 
 /*
   ######################################################################
