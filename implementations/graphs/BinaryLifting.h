@@ -17,8 +17,14 @@ struct BinaryLift {
         adj[v].push_back(u);
     }
 
-    void init(int r = 0) {
-        dfs(r);
+    void init(int r = -1) {
+        if (r == -1) {
+            for (int u=0; u<n; u++)
+                if (up[u][0] == -1)
+                    dfs(u);
+        } else {
+            dfs(r);
+        }
         for (int j=1; j<lg; j++)
             for (int i=0; i<n; i++)
                 if (up[i][j-1] != -1)

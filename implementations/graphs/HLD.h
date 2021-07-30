@@ -9,21 +9,29 @@
 
 template<bool VAL_IN_EDGES = false>
 struct HLD {
-    int ti;
+    int n, ti;
     vector<int> par, sz, depth, root, pos;
     vector<vector<int>> adj;
     SegmentTree st;
 
-    HLD(int n) : ti(0), par(n, -1), sz(n, 1), depth(n), root(n), pos(n), adj(n), st(n) {}
+    HLD(int _n) : n(_n), ti(0), par(n, -1), sz(n, 1), depth(n), root(n), pos(n), adj(n), st(n) {}
 
     void addEdge(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
 
-    void init(int r = 0) {
-        dfsSz(r);
-        dfsHld(r);
+    void init(int r = -1) {
+        if (r == -1) {
+            for (int u=0; u<n; u++)
+                if (par[u] == -1) {
+                    dfsSz(u);
+                    dfsHld(u);
+                }
+        } else {
+            dfsSz(r);
+            dfsHld(r);
+        }
     }
 
     void dfsSz(int u) {

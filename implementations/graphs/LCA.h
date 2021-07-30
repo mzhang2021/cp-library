@@ -8,19 +8,26 @@
 #include "../data-structures/RMQ.h"
 
 struct LCA {
+    int n;
     vector<int> in, out, depth, path, ret;
     vector<vector<int>> adj;
     RMQ<int> rmq;
 
-    LCA(int n) : in(n), out(n), depth(n), adj(n), rmq({}) {}
+    LCA(int _n) : n(_n), in(n, -1), out(n), depth(n), adj(n), rmq({}) {}
 
     void addEdge(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
 
-    void init(int r = 0) {
-        dfs(r, -1);
+    void init(int r = -1) {
+        if (r == -1) {
+            for (int u=0; u<n; u++)
+                if (in[u] == -1)
+                    dfs(u, -1);
+        } else {
+            dfs(r, -1);
+        }
         rmq = RMQ<int>(ret);
     }
 
