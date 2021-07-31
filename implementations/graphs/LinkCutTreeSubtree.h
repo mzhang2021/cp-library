@@ -13,7 +13,7 @@ struct Node {
     Node() : l(NULL), r(NULL), par(NULL), pp(NULL), rev(false), sz(1), vir(0) {}
 };
 
-int getSz(Node *u) {
+int sz(Node *u) {
     return u ? u->sz : 0;
 }
 
@@ -39,7 +39,7 @@ void pull(Node *u) {
     if (!u) return;
     push(u->l);
     push(u->r);
-    u->sz = 1 + u->vir + getSz(u->l) + getSz(u->r);
+    u->sz = 1 + u->vir + sz(u->l) + sz(u->r);
 }
 
 void leftRotate(Node *u) {
