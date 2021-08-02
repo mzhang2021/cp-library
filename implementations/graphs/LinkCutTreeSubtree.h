@@ -145,7 +145,10 @@ void makeRoot(Node *u) {
 
 Node* findRoot(Node *u) {
     access(u);
-    while (u->l) u = u->l;
+    while (u->l) {
+        u = u->l;
+        push(u);
+    }
     access(u);
     return u;
 }
