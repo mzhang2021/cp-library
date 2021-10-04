@@ -14,7 +14,7 @@ struct Node {
 
     Node(int val) : key(val), priority(rng()), l(NULL), r(NULL) {}
 };
-typedef Node* pNode;
+using pNode = Node*;
 
 void heapify(pNode t) {
     if (!t)

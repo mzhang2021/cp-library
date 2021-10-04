@@ -14,7 +14,7 @@ struct Node {
 
     Node(int _val) : sz(1), val(_val), ans(val), lazy(0), priority(rng()), l(NULL), r(NULL) {}
 };
-typedef Node* pNode;
+using pNode = Node*;
 
 int sz(pNode t) {
     return t ? t->sz : 0;

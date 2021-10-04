@@ -5,7 +5,7 @@
  * Time: fast
  */
 
-typedef unsigned long long ull;
+using ull = unsigned long long;
 
 struct PolyHash {
     static const ull MOD = (1ULL << 61) - 1;

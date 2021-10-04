@@ -7,7 +7,7 @@
 
 #include "Modular.h"
 
-typedef ModInt<998244353> M;
+using M = ModInt<998244353>;
 
 const int MAX = 1e5 + 5;
 

@@ -5,7 +5,7 @@
  * Time: O(n log n)
  */
 
-typedef complex<double> cd;
+using cd = complex<double>;
 
 const double PI = acos(-1);
 

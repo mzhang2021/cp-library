@@ -5,7 +5,7 @@
  * Time: O(log n)
  */
 
-typedef unsigned long long ull;
+using ull = unsigned long long;
 
 ull mul(ull a, ull b, const ull MOD) {
     long long ret = a * b - MOD * ull(1.L / MOD * a * b);
