@@ -1,5 +1,5 @@
 /**
- * Description: Performs range queries and point updates. Bounds are zero-indexed on [l, r).
+ * Description: Performs range queries and point updates.
  * Source: http://codeforces.com/blog/entry/18051
  * Verification: https://www.spoj.com/problems/FENTREE/
  * Time: O(n) build, O(log n) query and update
@@ -21,7 +21,7 @@ struct SegmentTree {
 
     T query(int l, int r) {
         T ret = 0;
-        for (l+=n, r+=n; l<r; l>>=1, r>>=1) {
+        for (l+=n, r+=n+1; l<r; l>>=1, r>>=1) {
             if (l&1) ret += st[l++];
             if (r&1) ret += st[--r];
         }

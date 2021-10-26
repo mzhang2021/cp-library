@@ -1,5 +1,5 @@
 /**
- * Description: Performs range prefix sum queries and point updates. Bounds are one-indexed on [1, x].
+ * Description: Performs range prefix sum queries and point updates.
  * Source: own
  * Verification: http://www.usaco.org/index.php?page=viewproblem2&cpid=693
  * Time: O(log n) query and update
@@ -22,7 +22,7 @@ struct BIT {
 
     T query(int i) {
         T ret = 0;
-        for (; i>0; i-=i&-i)
+        for (i++; i>0; i-=i&-i)
             ret += bit[i];
         return ret;
     }
@@ -32,7 +32,7 @@ struct BIT {
     }
 
     void update(int i, T val) {
-        for (; i<=n; i+=i&-i)
+        for (i++; i<=n; i+=i&-i)
             bit[i] += val;
     }
 
@@ -45,6 +45,6 @@ struct BIT {
             else
                 ret -= 1 << i;
         }
-        return ret + 1;
+        return ret;
     }
 };
