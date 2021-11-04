@@ -5,14 +5,14 @@
  * Time: O(n * m + F * m * log m)
  */
 
-struct Edge {
-    int u, v;
-    long long cap, cost, flow;
-
-    Edge(int _u, int _v, long long _cap, long long _cost) : u(_u), v(_v), cap(_cap), cost(_cost), flow(0) {}
-};
-
 struct MCMF {
+    struct Edge {
+        int u, v;
+        long long cap, cost, flow;
+
+        Edge(int _u, int _v, long long _cap, long long _cost) : u(_u), v(_v), cap(_cap), cost(_cost), flow(0) {}
+    };
+
     int m, n, s, t;
     bool neg;
     vector<int> par;

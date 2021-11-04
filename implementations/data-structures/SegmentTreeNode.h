@@ -5,19 +5,19 @@
  * Time: O(n) build, O(log n) query and update
  */
 
-struct Node {
-    int ans = 0;
-
-    void leaf(int val) {
-        ans += val;
-    }
-
-    void pull(const Node &a, const Node &b) {
-        ans = min(a.ans, b.ans);
-    }
-};
-
 struct SegmentTree {
+    struct Node {
+        int ans = 0;
+
+        void leaf(int val) {
+            ans += val;
+        }
+
+        void pull(const Node &a, const Node &b) {
+            ans = min(a.ans, b.ans);
+        }
+    };
+
     int n;
     vector<int> a;
     vector<Node> st;

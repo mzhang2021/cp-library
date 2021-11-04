@@ -5,28 +5,28 @@
  * Time: O(n) build, O(log n) query and update
  */
 
-struct Node {
-    int ans = 0, lazy = 0, l, r;
-
-    void leaf(int val) {
-        ans += val;
-    }
-
-    void pull(const Node &a, const Node &b) {
-        ans = a.ans + b.ans;
-    }
-
-    void push(int val) {
-        lazy += val;
-    }
-
-    void apply() {
-        ans += (r - l + 1) * lazy;
-        lazy = 0;
-    }
-};
-
 struct SegmentTree {
+    struct Node {
+        int ans = 0, lazy = 0, l, r;
+
+        void leaf(int val) {
+            ans += val;
+        }
+
+        void pull(const Node &a, const Node &b) {
+            ans = a.ans + b.ans;
+        }
+
+        void push(int val) {
+            lazy += val;
+        }
+
+        void apply() {
+            ans += (r - l + 1) * lazy;
+            lazy = 0;
+        }
+    };
+
     int n;
     vector<int> a;
     vector<Node> st;

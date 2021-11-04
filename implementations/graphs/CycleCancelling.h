@@ -6,14 +6,14 @@
  * Time: O(F * n^2 * m)
  */
 
-struct Edge {
-    int u, v;
-    long long cap, cost, flow;
-
-    Edge(int _u, int _v, long long _cap, long long _cost) : u(_u), v(_v), cap(_cap), cost(_cost), flow(0) {}
-};
-
 struct MCF {
+    struct Edge {
+        int u, v;
+        long long cap, cost, flow;
+
+        Edge(int _u, int _v, long long _cap, long long _cost) : u(_u), v(_v), cap(_cap), cost(_cost), flow(0) {}
+    };
+
     int m, n;
     vector<int> par;
     vector<long long> dist;

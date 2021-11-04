@@ -5,14 +5,14 @@
  * Time: O(n^2 * m)
  */
 
-struct Edge {
-    int u, v;
-    long long cap, flow;
-
-    Edge(int _u, int _v, long long _cap) : u(_u), v(_v), cap(_cap), flow(0) {}
-};
-
 struct Dinic {
+    struct Edge {
+        int u, v;
+        long long cap, flow;
+
+        Edge(int _u, int _v, long long _cap) : u(_u), v(_v), cap(_cap), flow(0) {}
+    };
+
     int m, s, t;
     vector<int> level, ptr;
     vector<Edge> edges;
