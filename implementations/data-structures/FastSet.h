@@ -1,29 +1,27 @@
 /**
  * Description: Faster alternative to std::multiset for adding, removing, and querying for max.
  * Source: self
- * Verification: self
+ * Verification: https://codeforces.com/gym/103055/problem/B
  * Time: O(log n)
  */
 
+template<typename T>
 struct FastSet {
-    priority_queue<int> pq;
-    vector<int> pending;
+    priority_queue<T> pq, pending;
 
-    FastSet(int n) : pending(n) {}
-
-    void add(int x) {
+    void add(T x) {
         pq.push(x);
     }
 
-    void rem(int x) {
-        pending[x]++;
-        while (!pq.empty() && pending[pq.top()]) {
-            pending[pq.top()]--;
+    void rem(T x) {
+        pending.push(x);
+        while (!pq.empty() && !pending.empty() && pq.top() == pending.top()) {
             pq.pop();
+            pending.pop();
         }
     }
 
-    int max() {
+    T max() {
         assert(!pq.empty());
         return pq.top();
     }
