@@ -25,10 +25,12 @@ struct HLD {
         if (r == -1) {
             for (int u=0; u<n; u++)
                 if (par[u] == -1) {
+                    root[u] = u;
                     dfsSz(u);
                     dfsHld(u);
                 }
         } else {
+            root[r] = r;
             dfsSz(r);
             dfsHld(r);
         }
