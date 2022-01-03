@@ -28,7 +28,7 @@ struct BIT {
     }
 
     T query(int l, int r) {
-        return query(r) - query(l-1);
+        return l > r ? 0 : query(r) - query(l - 1);
     }
 
     void update(int i, T val) {
