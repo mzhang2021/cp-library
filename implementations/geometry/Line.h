@@ -1,5 +1,6 @@
 /**
  * Description: Line/segment class for geometry problems.
+ * For line intersection, checking true or false is exact, but calculating the intersection point may be imprecise due to intermediate calculations reaching (max coord)^3.
  * Source: https://codeforces.com/blog/entry/48122
  * Verification: https://codeforces.com/gym/100168
  * Time: fast
