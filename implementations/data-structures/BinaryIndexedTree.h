@@ -1,5 +1,5 @@
 /**
- * Description: Performs range prefix sum queries and point updates.
+ * Description: Performs range prefix sum queries and point updates. kth is 1-indexed.
  * Source: own
  * Verification: http://www.usaco.org/index.php?page=viewproblem2&cpid=693
  * Time: O(log n) query and update
