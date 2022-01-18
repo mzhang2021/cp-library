@@ -1,5 +1,5 @@
 /**
- * Description: Performs range prefix sum queries and point updates. kth returns first index with prefix query >= k and is 1-indexed.
+ * Description: Performs range prefix sum queries and point updates. kth returns first index with prefix query >= k.
  * Source: own
  * Verification: http://www.usaco.org/index.php?page=viewproblem2&cpid=693
  * Time: O(log n) query and update
