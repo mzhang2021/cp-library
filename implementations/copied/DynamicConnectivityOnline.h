@@ -1,5 +1,13 @@
 // Source: https://github.com/dacin21/dacin21_codebook/blob/master/trees/dynamic_connectivity.cpp
 
+/*
+ *	Fully dynamic connectiviy
+ *	add or remove edges in O(log n^2)
+ *	query connectivity in O(log n)
+ *	code by dacin21, got cleaned up in september 2017
+ *	0.33 seconds for n=m=1e5 on spoj
+ */
+
 #ifdef LOCAL_RUN
 #define asser(x) do{if(1){assert(x);}}while(0)
 #define asser2(x) do{if(1){assert(x);}}while(0)
@@ -460,3 +468,62 @@ struct Layer_Structure{
         }
     }
 };
+
+namespace FIO{
+    char buf[32*1042|1];
+    int bc=0, be=0;
+    char gc(){
+        if(bc>=be){
+            be = fread(buf, 1, sizeof(buf)-1, stdin);
+            buf[be] = bc = 0;
+        }
+        return buf[bc++];
+    }
+    void readint(){}
+    void readuint(){}
+    template<typename T, typename ...S>
+    void readuint(T &a, S& ...b){
+        a=0;
+        int x=gc();
+        while(x<'0' || x>'9') x=gc();
+        while(x>='0' && x<='9'){
+            a = a*10+x-'0'; x=gc();
+        }
+        readuint(b...);
+    }
+	template<typename T, typename ...S>
+    void readint(T &a, S& ...b){
+        a=0;
+        int x=gc(), s=1;;
+        while(x!='-' && (x<'0' || x>'9')) x=gc();
+		if(x=='-'){ s=-s; x=gc(); }
+        while(x>='0' && x<='9'){
+            a = a*10+x-'0'; x=gc();
+        }
+		if(s<0) a=-a;
+        readint(b...);
+    }
+}
+using FIO::readuint;
+
+int dynacon2(){
+  cin.tie(0);
+  ios_base::sync_with_stdio(false);
+  int N, M;
+  readuint(N, M);
+  Layer_Structure l(N+1, M+1);
+  char c;
+  int a, b;
+  for(;M>0;--M){
+    c = FIO::gc();
+    while(c<'a' || c > 'z') c = FIO::gc();
+    readuint(a, b);
+    if(c=='a') l.link(a, b);
+    else if(c == 'c') cout << (l.connected(a, b) ? "YES\n" : "NO\n");
+    else l.cut(a, b);
+  }
+  return 0;
+}
+signed main(){
+    return dynacon2();
+}
