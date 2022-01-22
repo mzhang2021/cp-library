@@ -6,8 +6,7 @@
  */
 
 struct DSU {
-    vector<int> par, sz;
-    vector<bool> color;
+    vector<int> par, sz, color;
 
     DSU(int n) : par(n), sz(n, 1), color(n) {
         iota(par.begin(), par.end(), 0);
@@ -29,7 +28,7 @@ struct DSU {
     bool unite(int u, int v) {
         find(u);
         find(v);
-        bool x = color[u], y = color[v];
+        int x = color[u], y = color[v];
         u = par[u];
         v = par[v];
         if (u == v)
