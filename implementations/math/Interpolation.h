@@ -10,6 +10,8 @@
 
 #include "Modular.h"
 
+using M = ModInt<1000000007>;
+
 M interpolate(const vector<M> &y, long long x) {
     int n = (int) y.size();
     if (x < n)
