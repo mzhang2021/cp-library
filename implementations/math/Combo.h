@@ -2,7 +2,7 @@
  * Description: Basic combinatorial functions.
  * Source: own
  * Verification: https://www.spoj.com/problems/ADATEAMS/
- * Time: O(n) preprocessing
+ * Time: O(n + log MOD) preprocessing
  */
 
 #include "Modular.h"
