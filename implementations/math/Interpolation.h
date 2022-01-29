@@ -8,7 +8,7 @@
  * Time: O(n + log MOD)
  */
 
-#include "Modular.h"
+#include "ModInt.h"
 
 using M = ModInt<1000000007>;
 
