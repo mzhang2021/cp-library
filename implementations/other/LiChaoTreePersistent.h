@@ -15,7 +15,7 @@ struct Line {
     }
 };
 
-int id, pl[MAX], pr[MAX];
+int id = 1, pl[MAX], pr[MAX];
 Line st[MAX];
 
 int newLeaf(const Line &cur) {
