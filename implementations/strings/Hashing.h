@@ -44,5 +44,5 @@ uint64_t getHash(const string &s) {
 }
 
 // A string with characters c_0 c_1 c_2 c_3 is encoded as c_0 * BASE^3 + c_1 * BASE^2 + c_2 * BASE + c_3
-// If you precomopute all prefixes, then you can get any substring from index i with length L
+// If you precompute all prefixes, then you can get any substring from index i with length L
 // pref[i + L - 1] - pref[i - 1] * BASE^L
