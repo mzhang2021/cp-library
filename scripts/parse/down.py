@@ -83,6 +83,9 @@ def get_prob_name(data, single):
     if 'UVa' in data['group']:
         return data['name'].split()[0].zfill(5)
 
+    if 'LibreOJ' in data['group']:
+        return 'loj' + [i for i in data['url'].split('/') if i][-1]
+
     patternMatch = NAME_PATTERN.search(data['name'])
     if patternMatch is not None:
         return patternMatch.group(0)
