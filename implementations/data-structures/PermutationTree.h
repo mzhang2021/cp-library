@@ -4,7 +4,7 @@
  * For join nodes, any contiguous subsequence of children form a good range.
  * For cut nodes, no contiguous subsequence of children except for all or just one child is good.
  * Source: https://codeforces.com/blog/entry/78898
- * Verification: https://codeforces.com/contest/526/problem/F
+ * Verification: https://codeforces.com/contest/526/problem/F, https://codeforces.com/gym/101620/problem/I
  * Time: O(n log n) build time
  */
 
