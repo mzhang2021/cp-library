@@ -16,7 +16,7 @@ import os
 from os import path
 import filecmp
 
-CPP_COMPILE = 'g++ -std=c++20 -O2 -Wshadow -DLOCAL -g -Wl,--stack,268435456 -I C:/Users/Max/ac-library '
+CPP_COMPILE = 'g++ -std=c++20 -O2 -Wshadow -DLOCAL -g -Wl,--stack,268435456 -I C:/Users/maxzh/ac-library '
 
 def printFile(name):
     f = open(name, 'r')
