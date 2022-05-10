@@ -1,4 +1,4 @@
-// https://codeforces.com/blog/entry/98782
+// Source: https://codeforces.com/blog/entry/98782
 
 #include <bits/stdc++.h>
 
