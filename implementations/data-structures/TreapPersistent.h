@@ -1,7 +1,9 @@
 /**
  * Description: Treap variant that supports querying on previous versions of the tree.
+ * If tight on memory, don't store priority explicitly and instead replace tr[l].priority > tr[r].priority in merge method
+ * with rng() % (tr[l].sz + tr[r].sz) < tr[l].sz
  * Source: self
- * Verification: https://www.luogu.com.cn/problem/P5055
+ * Verification: https://www.luogu.com.cn/problem/P5055, https://www.acmicpc.net/problem/19068
  * Time: O(log n)
  */
 
