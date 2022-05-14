@@ -1,5 +1,7 @@
 /**
  * Description: Dynamic connectivity for forests, supports subtree aggregates.
+ * Vertices are stored once and edges are stored twice, once in each direction.
+ * Subtrees are accessed by cutting the edge from subtree root to parent.
  * Source: self
  * Verification: https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum
  * Time: O(log n)
