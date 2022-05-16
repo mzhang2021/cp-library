@@ -84,7 +84,7 @@ void rotate(int u) {
     if (~dv)
         attach(w, dv, u);
     else
-        tr[u].p = 0;
+        tr[u].p = w;
 }
 
 void splay(int u) {
