@@ -1,5 +1,5 @@
 /**
- * Description: Dynamic connectivity for forests. To store aggregates on edges, add fake nodes for edges.
+ * Description: Dynamic connectivity for forests. To store aggregates on edges, add fake nodes for edges. Nodes are 1-indexed.
  * Source: https://codeforces.com/blog/entry/75885
  * Verification: https://www.spoj.com/problems/DYNACON1/, https://dmoj.ca/problem/ds5easy
  * Time: O(log n)
