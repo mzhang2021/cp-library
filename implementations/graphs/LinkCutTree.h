@@ -28,7 +28,6 @@ void reroot(int u) {
 
 void link(int u, int v) {
     reroot(u);
-    access(v);
     tr[u].p = v;
 }
 
