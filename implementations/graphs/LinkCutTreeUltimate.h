@@ -195,9 +195,9 @@ void rem(int u) {
 }
 
 int par(int u) {
-    if (!tr[tr[u].p].fake)
-        return tr[u].p;
     int v = tr[u].p;
+    if (!tr[v].fake)
+        return v;
     splay(v, 2);
     return tr[v].p;
 }
