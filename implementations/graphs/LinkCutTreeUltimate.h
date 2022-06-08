@@ -1,7 +1,7 @@
 /**
  * Description: The ultimate link cut tree supporting all path/subtree lazy updates and aggregates. Also known as AAA tree. Nodes are 1-indexed.
  * Note that lazy style is different from my usual style, lazy on node means value is already updated instead of pending update.
- * Only modifications required are: 1. Data struct, 2. Populate freeList with n nodes at the start, where n is maximum number of nodes in tree at any point.
+ * Only modifications required are: 1. Data struct, 2. Set MAX to 2n, 3. Populate freeList with n nodes at the start.
  * Source: https://www.cnblogs.com/clrs97/p/4403244.html
  * Verification: https://dmoj.ca/problem/ds5
  * Time: O(log n)
