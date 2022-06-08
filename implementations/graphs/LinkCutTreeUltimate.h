@@ -168,7 +168,6 @@ void add(int u, int v) {
         }
     int w = freeList.back();
     freeList.pop_back();
-    tr[w] = Node();
     attach(w, 2, tr[u].ch[2]);
     attach(w, 3, v);
     attach(u, 2, w);
