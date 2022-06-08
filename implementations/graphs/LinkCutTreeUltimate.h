@@ -112,7 +112,6 @@ void push(int u) {
         pushSub(tr[u].ch[3], true, tr[u].slazy);
         tr[u].slazy = Lazy();
     }
-    tr[u].all = tr[u].path + tr[u].sub;
 }
 
 void pull(int u) {
