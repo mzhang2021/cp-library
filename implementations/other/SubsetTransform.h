@@ -11,7 +11,7 @@ vector<T> zetaTransform(int n, const vector<T> &f) {
     for (int i=0; i<n; i++)
         for (int mask=0; mask<1<<n; mask++)
             if (mask >> i & 1)
-                dp[mask] += dp[mask ^ (1 << i)];
+                dp[mask] += dp[mask ^ (1 << i)];    // change to dp[mask ^ (1 << i)] += dp[mask] for superset instead of subset sum
     return dp;
 }
 
