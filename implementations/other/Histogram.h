@@ -1,5 +1,5 @@
 /**
- * Description: Finds the largest rectangular area that fits in a rectangle.
+ * Description: Finds the largest rectangular area that fits in a histogram.
  * Source: https://www.youtube.com/watch?v=VNbkzsnllsU
  * Verification: https://cses.fi/problemset/task/1142
  * Time: O(n)
