@@ -1,7 +1,7 @@
 /**
  * Description: Randomized binary search tree that supports O(log n) split and merge functions.
  * Source: self
- * Verification: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
+ * Verification: https://judge.yosupo.jp/submission/88983
  * Time: O(log n)
  */
 

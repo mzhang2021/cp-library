@@ -1,7 +1,7 @@
 /**
  * Description: Binary search tree that supports O(log n) split and merge functions.
  * Source: https://codeforces.com/blog/entry/75885
- * Verification: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
+ * Verification: https://judge.yosupo.jp/submission/89100
  * Time: O(log n)
  */
 
