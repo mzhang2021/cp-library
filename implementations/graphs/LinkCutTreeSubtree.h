@@ -8,10 +8,12 @@
 #include "../data-structures/SplayTree.h"
 
 void add(int u, int v) {
+    push(v);
     tr[u].vir += tr[v].sum;
 }
 
 void rem(int u, int v) {
+    push(v);
     tr[u].vir -= tr[v].sum;
 }
 
