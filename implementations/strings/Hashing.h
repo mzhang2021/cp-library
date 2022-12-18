@@ -43,6 +43,20 @@ uint64_t getHash(const string &s) {
     return ret;
 }
 
+vector<uint64_t> getPrefTable(const string &s) {
+    vector<uint64_t> pref{0};
+    for (char c : s)
+        pref.push_back(add(mul(pref.back(), BASE), c));
+    return pref;
+}
+
+uint64_t pw[1000005];
+
+uint64_t substr(const vector<uint64_t> &pref, int i, int len) {
+    return sub(pref[i+len], mul(pref[i], pw[len]));
+}
+
 // A string with characters c_0 c_1 c_2 c_3 is encoded as c_0 * BASE^3 + c_1 * BASE^2 + c_2 * BASE + c_3
 // If you precompute all prefixes, then you can get any substring from index i with length L
-// pref[i + L - 1] - pref[i - 1] * BASE^L
+// pref[i + L] - pref[i] * BASE^L
+// DON'T FORGET TO PRECOMPUTE POWERS
