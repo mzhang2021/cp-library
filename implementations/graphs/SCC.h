@@ -16,19 +16,21 @@ struct SCC {
         adj[u].push_back(v);
     }
 
-    void init() {
+    void init(bool buildDag = false) {
         for (int u=0; u<n; u++)
             if (!num[u])
                 dfs(u);
-        dag.resize(comp.size());
-        for (auto &c : comp)
-            for (int u : c)
-                for (int v : adj[u])
-                    if (id[u] != id[v])
-                        dag[id[u]].push_back(id[v]);
-        for (auto &v : dag) {
-            sort(v.begin(), v.end());
-            v.erase(unique(v.begin(), v.end()), v.end());
+        if (buildDag) {
+            dag.resize(comp.size());
+            for (auto &c : comp)
+                for (int u : c)
+                    for (int v : adj[u])
+                        if (id[u] != id[v])
+                            dag[id[u]].push_back(id[v]);
+            for (auto &v : dag) {
+                sort(v.begin(), v.end());
+                v.erase(unique(v.begin(), v.end()), v.end());
+            }
         }
     }
 
