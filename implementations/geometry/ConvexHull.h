@@ -1,6 +1,6 @@
 /**
  * Description: Finds the convex hull of a set of points via Andrew's Monotone Chain Algorithm. Change <= to < to allow points on the edges.
- * Points are returned in counter-clockwise order. For a line it returns its two endpoints.
+ * Points are returned in counter-clockwise order. For a line it returns its two endpoints. Does NOT handle duplicate points correctly if you also allow points on edges.
  * Source: https://github.com/stjepang/snippets/blob/master/convex_hull.cpp
  * Verification: https://open.kattis.com/problems/convexhull
  * Time: O(n log n)
