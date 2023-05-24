@@ -1,5 +1,8 @@
 /**
- * Description: A data structure for solving a variety of string problems.
+ * Description: Every distinct substring corresponds to an execution in the automaton.
+ * All substrings ending at the same state end at the same set of positions in the string (same equiv class).
+ * The suffix link of state of substring w leads to the state of longest suffix of w with larger equiv class.
+ * The suffix links form a tree, and we can compute equiv class sizes bottom-up on this tree.
  * Source: https://cp-algorithms.com/string/suffix-automaton.html
  * Verification: https://cses.fi/problemset/task/2108, https://www.spoj.com/problems/SUBLEX/
  * Time: O(n) build
