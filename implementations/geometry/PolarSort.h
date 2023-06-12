@@ -1,5 +1,6 @@
 /**
- * Description: Sorts vectors radially based on angles [0, 2pi). For parallel vectors, order is arbitrary. Inclusion of (0, 0) is undefined.
+ * Description: Sorts vectors radially based on angles [0, 2pi). For parallel vectors, order is arbitrary.
+ * DO NOT INCLUDE (0, 0)!!!
  * Source: https://codeforces.com/blog/entry/72815
  * Verification: https://open.kattis.com/problems/leylines
  * Time: O(1)
