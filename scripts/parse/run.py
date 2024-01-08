@@ -15,8 +15,15 @@ from pathlib import Path
 import os
 from os import path
 import filecmp
+import platform
 
-CPP_COMPILE = 'g++-10 -std=c++20 -O2 -Wshadow -DLOCAL -g -I/media/max/DATA/ac-library '
+CPP_COMPILE = 'g++ -std=c++20 -O2 -Wshadow -DLOCAL '
+if platform.system() == 'Darwin':
+    CPP_COMPILE += '-I/Users/max/ac-library '
+elif platform.system() == 'Windows':
+    CPP_COMPILE += '-g -Wl,--stack,268435456 -I C:/Users/maxzh/ac-library '
+else:
+    CPP_COMPILE += '-g -I/media/max/DATA/ac-library '
 
 def printFile(name):
     f = open(name, 'r')
