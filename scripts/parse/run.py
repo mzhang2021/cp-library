@@ -74,7 +74,7 @@ def execute(name, ext, test, debug):
     print("-----------------------------------------------------------")
     tot = 0
     correct = 0
-    for file in os.listdir(probDir):
+    for file in sorted(os.listdir(probDir)):
         if file.endswith('.in'):
             sample = file[:file.rfind('.in')]
             sampleFile = str(probDir / sample)
